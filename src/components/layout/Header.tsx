@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom'
-import { Leaf, Menu, ShoppingBag } from 'lucide-react'
+import { Leaf, Menu } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import {
   Sheet,
@@ -9,6 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
+import CartButton from '@/features/cart/components/CartButton'
 import { cn } from '@/lib/utils'
 
 const navLinks = [
@@ -22,20 +23,6 @@ function LogoMark() {
     <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-brand-primary text-brand-surface">
       <Leaf className="h-5 w-5" />
     </span>
-  )
-}
-
-// STUB: carrinho de orçamento real chega na Task 14 (src/features/cart/components/CartButton.tsx).
-// Este botão é apenas visual e autocontido para ser substituído depois.
-function CartButtonStub() {
-  return (
-    <button
-      type="button"
-      aria-label="Abrir carrinho de orçamento"
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full text-brand-primary transition-colors hover:bg-brand-surface-2"
-    >
-      <ShoppingBag className="h-5 w-5" />
-    </button>
   )
 }
 
@@ -68,11 +55,11 @@ export default function Header() {
               {link.label}
             </NavLink>
           ))}
-          <CartButtonStub />
+          <CartButton />
         </nav>
 
         <div className="flex items-center gap-1 md:hidden">
-          <CartButtonStub />
+          <CartButton />
           <Sheet>
             <SheetTrigger render={<Button variant="ghost" size="icon" />}>
               <Menu className="h-5 w-5" />

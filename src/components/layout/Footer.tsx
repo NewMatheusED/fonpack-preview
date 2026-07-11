@@ -14,8 +14,8 @@ const linksRapidos = [
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-brand-accent/30 bg-brand-surface">
-      <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="relative z-10 grid grid-cols-1 gap-12 md:grid-cols-3">
           <div>
             <h3 className="font-serif text-xl text-brand-primary">Fale conosco</h3>
             <p className="mt-4 max-w-xs text-sm text-brand-muted">{company.endereco}</p>
@@ -47,14 +47,14 @@ export default function Footer() {
 
           <div aria-hidden="true" className="hidden md:block" />
         </div>
-      </div>
 
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-4 -bottom-12 select-none font-script text-[10rem] leading-none text-brand-primary sm:-bottom-16 sm:text-[14rem] lg:text-[16rem]"
-      >
-        F
-      </span>
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-4 -bottom-12 select-none font-script text-[10rem] leading-none text-brand-primary sm:-bottom-16 sm:text-[14rem] lg:text-[16rem]"
+        >
+          F
+        </span>
+      </div>
     </footer>
   )
 }

@@ -7,10 +7,10 @@ export const guias: Guia[] = [
     subtitulo: 'Aprenda a medir corretamente para encontrar a embalagem ideal',
     chamada: 'Como tirar medidas?',
     heroImg: '/guias/medidas-hero.webp',
-    // medidas-card.webp veio corrompido (contém print do card "Qual onda devo
-    // escolher?" em vez de uma foto) — reaproveita a foto da caixa na mesa.
-    cardImg: '/guias/medidas-caixa.webp',
-    tema: 'creme',
+    // recortada (scripts/crop-guia-card-photos.mjs) de public/home/bento-medidas.webp,
+    // que veio do Framer com o texto do card queimado no PNG — aqui fica só a foto.
+    cardImg: '/guias/medidas-card.webp',
+    tema: 'foto',
   },
   {
     slug: 'qual-onda-escolher',
@@ -18,7 +18,8 @@ export const guias: Guia[] = [
     subtitulo: 'Entenda as diferenças entre os tipos de onda e escolha a melhor proteção.',
     chamada: 'Qual onda devo escolher?',
     heroImg: '/guias/onda-hero.webp',
-    cardImg: '/guias/onda-bb.webp',
+    // recortada de public/home/bento-onda.webp (mesmo motivo do medidas-card acima).
+    cardImg: '/guias/onda-card.webp',
     tema: 'verde',
   },
   {
@@ -27,7 +28,8 @@ export const guias: Guia[] = [
     subtitulo: 'Compare os materiais e descubra qual é o mais adequado para o seu produto',
     chamada: 'Plástico bolha, Papel kraft ou divisórias?',
     heroImg: '/guias/materiais-hero.webp',
-    cardImg: '/guias/materiais-bolha.webp',
+    // recortada de public/home/bento-materiais.webp (mesmo motivo do medidas-card acima).
+    cardImg: '/guias/materiais-card.webp',
     tema: 'creme',
   },
 ]

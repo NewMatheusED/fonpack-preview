@@ -11,7 +11,7 @@ export default function GuiaMedidasPage() {
       />
 
       <section className="grid grid-cols-1 bg-brand-surface lg:grid-cols-2">
-        <div className="flex flex-col justify-center px-4 py-16 sm:px-6 lg:px-12 lg:py-24 xl:px-20">
+        <div className="flex flex-col justify-center px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
           <h1 className="font-serif text-4xl leading-tight text-brand-primary sm:text-5xl">
             Como tirar as medidas da sua embalagem
           </h1>

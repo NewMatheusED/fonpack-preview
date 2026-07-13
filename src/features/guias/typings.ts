@@ -1,4 +1,11 @@
-export type GuiaTema = 'verde' | 'creme'
+/**
+ * 'verde' e 'creme': card com fundo chapado, texto no topo e uma imagem no
+ * canto inferior direito.
+ * 'foto': card com a foto ocupando o fundo inteiro e um cartão flutuante
+ * (ícone + título + subtítulo) no canto inferior esquerdo — usado só pelo
+ * guia "como tirar medidas".
+ */
+export type GuiaTema = 'verde' | 'creme' | 'foto'
 
 export type Guia = {
   slug: string
@@ -10,7 +17,7 @@ export type Guia = {
   chamada: string
   /** imagem full-bleed do hero da página do guia. */
   heroImg: string
-  /** imagem exibida no canto do card. */
+  /** imagem exibida no card (canto inferior direito, ou fundo inteiro se tema "foto"). */
   cardImg: string
   tema: GuiaTema
 }

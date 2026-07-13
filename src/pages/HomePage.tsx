@@ -5,8 +5,11 @@ import DiferenciaisBand from '@/components/layout/DiferenciaisBand'
 import Hero from '@/features/company/components/Hero'
 import InstitutionalSplit from '@/features/company/components/InstitutionalSplit'
 import Seo from '@/components/seo/Seo'
+import { getGuias } from '@/features/guias/data'
+import GuiaCard from '@/features/guias/components/GuiaCard'
 
 const destaques = getProdutos().filter((p) => p.destaque)
+const [guiaMedidas, guiaOnda, guiaMateriais] = getGuias()
 
 export default function HomePage() {
   return (
@@ -48,19 +51,23 @@ export default function HomePage() {
 
       <InstitutionalSplit />
 
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <h2 className="font-serif text-3xl text-brand-primary sm:text-4xl">
-          Tem alguma dúvida?
-        </h2>
-        <p className="mt-3 max-w-md text-sm text-brand-muted sm:text-base">
-          Tudo o que você precisa saber para receber a embalagem ideal para o seu produto.
-        </p>
-        <Link
-          to="/fale-conosco"
-          className="mt-6 inline-flex items-center rounded-full bg-brand-primary px-6 py-3 text-sm font-semibold text-brand-surface transition-colors hover:bg-brand-primary-2"
-        >
-          Fale conosco
-        </Link>
+      <section className="bg-brand-surface py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="font-serif text-3xl text-brand-primary sm:text-4xl">
+              Tem alguma dúvida?
+            </h2>
+            <p className="mx-auto mt-3 max-w-md text-sm text-brand-muted sm:text-base">
+              Tudo o que você precisa saber para receber a embalagem ideal para o seu produto.
+            </p>
+          </div>
+
+          <div className="mt-10 grid grid-cols-1 gap-5 sm:mt-14 lg:grid-cols-2 lg:grid-rows-2 lg:gap-6">
+            <GuiaCard guia={guiaMedidas} className="lg:row-span-2" />
+            <GuiaCard guia={guiaOnda} />
+            <GuiaCard guia={guiaMateriais} />
+          </div>
+        </div>
       </section>
     </div>
   )

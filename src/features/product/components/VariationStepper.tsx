@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { useCart } from '@/features/cart/store'
 import { buildItemUrl } from '@/lib/whatsapp'
 import { cn } from '@/lib/utils'
@@ -16,6 +17,10 @@ type VariationStepperProps = {
 export default function VariationStepper({ produto }: VariationStepperProps) {
   const { selecao, setOpcao, setSwatch, setToggle, setTexto, resumo } = useVariationSelection(produto.variacoes)
   const add = useCart((s) => s.add)
+  const [adicionado, setAdicionado] = useState(false)
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
+
+  useEffect(() => () => clearTimeout(timeoutRef.current), [])
 
   const stepperLabels = produto.stepper ?? []
   const stepConcluido = stepperLabels.map((_, i) => {
@@ -32,6 +37,9 @@ export default function VariationStepper({ produto }: VariationStepperProps) {
       variacaoResumo: resumo,
       quantidade: 1,
     })
+    setAdicionado(true)
+    clearTimeout(timeoutRef.current)
+    timeoutRef.current = setTimeout(() => setAdicionado(false), 2200)
   }
 
   return (
@@ -121,9 +129,15 @@ export default function VariationStepper({ produto }: VariationStepperProps) {
         <button
           type="button"
           onClick={handleAdicionar}
-          className="w-full rounded-xl bg-brand-primary px-5 py-3.5 text-sm font-semibold text-brand-surface transition-colors hover:bg-brand-primary-2"
+          aria-live="polite"
+          className={cn(
+            'w-full rounded-xl px-5 py-3.5 text-sm font-semibold transition-colors',
+            adicionado
+              ? 'bg-brand-green-soft text-brand-primary'
+              : 'bg-brand-primary text-brand-surface hover:bg-brand-primary-2',
+          )}
         >
-          Adicionar ao orçamento
+          {adicionado ? 'Adicionado ✓' : 'Adicionar ao orçamento'}
         </button>
         <a
           href={buildItemUrl(produto.nome, resumo)}

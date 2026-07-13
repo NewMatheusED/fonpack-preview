@@ -47,7 +47,7 @@ it('trocar de opção substitui a escolha em vez de acumular', () => {
 
   const { itens } = useCart.getState()
   expect(itens).toHaveLength(1)
-  expect(itens[0].variacaoResumo).toBe('Escolha a onda que deseja: C')
+  expect(itens[0].variacaoResumo).toBe('Onda: C')
 })
 
 it('não dá para adicionar ao orçamento sem escolher a variação', () => {
@@ -70,5 +70,5 @@ it('com a variação escolhida, o botão adiciona o item com o resumo certo', ()
   const { itens } = useCart.getState()
   expect(itens).toHaveLength(1)
   expect(itens[0].nome).toBe('Cantoneira de papelão')
-  expect(itens[0].variacaoResumo).toBe('Escolha a onda que deseja: B')
+  expect(itens[0].variacaoResumo).toBe('Onda: B')
 })

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { VariationGroup } from '@/features/catalog/typings'
+import { rotuloCurto } from './rotulos'
 
 export type VariationSelection = Record<string, string>
 
@@ -13,12 +14,17 @@ function ehObrigatorio(grupo: VariationGroup): boolean {
   return grupo.tipo === 'opcoes' || grupo.tipo === 'swatch'
 }
 
-/** Monta o texto "titulo: valor | titulo: valor" na ordem dos grupos de variação. */
+/**
+ * Monta o resumo da escolha: "Onda: BC | Cor: Pardo".
+ *
+ * Usa `rotuloCurto` porque este texto não fica só na tela — ele vai junto no
+ * item do orçamento e, no fim, na mensagem que chega no WhatsApp do vendedor.
+ */
 export function montarResumo(variacoes: VariationGroup[], selecao: VariationSelection): string {
   return variacoes
     .map((grupo) => {
       const valor = selecao[grupo.titulo]
-      return valor ? `${grupo.titulo}: ${valor}` : null
+      return valor ? `${rotuloCurto(grupo.titulo)}: ${valor}` : null
     })
     .filter((linha): linha is string => Boolean(linha))
     .join(' | ')

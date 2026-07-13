@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useCart } from '@/features/cart/store'
 import { buildItemUrl } from '@/lib/whatsapp'
 import { cn } from '@/lib/utils'
@@ -142,6 +143,17 @@ export default function VariationStepper({ produto }: VariationStepperProps) {
         >
           {adicionado ? 'Adicionado ✓' : 'Adicionar ao orçamento'}
         </button>
+
+        {/* No celular o badge do carrinho fica lá no topo da tela — sem este
+            atalho, quem acabou de adicionar não tem caminho para fechar. */}
+        {adicionado && (
+          <Link
+            to="/orcamento"
+            className="-mt-1 text-center text-sm font-semibold text-brand-primary underline underline-offset-4"
+          >
+            Ver meu orçamento
+          </Link>
+        )}
 
         {!selecaoCompleta && (
           <p className="-mt-1 text-center text-xs text-brand-muted">

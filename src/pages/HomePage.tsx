@@ -4,12 +4,18 @@ import ProductCard from '@/features/catalog/components/ProductCard'
 import DiferenciaisBand from '@/components/layout/DiferenciaisBand'
 import Hero from '@/features/company/components/Hero'
 import InstitutionalSplit from '@/features/company/components/InstitutionalSplit'
+import Seo from '@/components/seo/Seo'
 
 const destaques = getProdutos().filter((p) => p.destaque)
 
 export default function HomePage() {
   return (
     <div>
+      <Seo
+        titulo="FonPack Embalagens | Embalagens sob medida para o seu negócio"
+        descricao="Caixas, fitas, bobinas e acessórios de embalagem sob medida. Peça seu orçamento pelo WhatsApp com a FonPack Embalagens."
+        imagem="/produtos/corte-vinco/0.webp"
+      />
       <Hero />
 
       <DiferenciaisBand variant="verde" />

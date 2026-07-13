@@ -7,6 +7,7 @@ import ProductGallery from '@/features/product/components/ProductGallery'
 import DescriptionList from '@/features/product/components/DescriptionList'
 import VariationStepper from '@/features/product/components/VariationStepper'
 import PrevNextNav from '@/features/product/components/PrevNextNav'
+import Seo from '@/components/seo/Seo'
 
 export default function ProdutoPage() {
   const { slug = '' } = useParams()
@@ -15,9 +16,17 @@ export default function ProdutoPage() {
   if (!produto) return <Navigate to="/loja" replace />
 
   const categoria = categorias.find((c) => c.id === produto.categoriaId)
+  const descricaoSeo =
+    produto.descricao[0] ??
+    `Conheça ${produto.nome} e peça um orçamento sem compromisso com a FonPack Embalagens.`
 
   return (
     <div>
+      <Seo
+        titulo={`${produto.nome} | FonPack Embalagens`}
+        descricao={descricaoSeo}
+        imagem={produto.imagens[0]}
+      />
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <nav aria-label="breadcrumb" className="flex flex-wrap items-center gap-1.5 text-sm text-brand-muted">
           <Link to="/" className="hover:text-brand-primary">

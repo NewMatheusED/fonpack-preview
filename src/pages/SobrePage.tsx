@@ -1,9 +1,15 @@
 import PillarsBand from '@/features/company/components/PillarsBand'
 import MissionVisionValues from '@/features/company/components/MissionVisionValues'
+import Seo from '@/components/seo/Seo'
 
 export default function SobrePage() {
   return (
     <div>
+      <Seo
+        titulo="Sobre nós | FonPack Embalagens"
+        descricao="Conheça a história, a missão, a visão e os valores da FonPack Embalagens, parceira em soluções de embalagem para o crescimento do seu negócio."
+        imagem="/produtos/arquivo-morto/0.webp"
+      />
       <section className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-16">
         <div>
           <p className="text-sm font-semibold uppercase tracking-wide text-brand-muted">

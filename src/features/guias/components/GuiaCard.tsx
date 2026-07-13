@@ -6,39 +6,60 @@ import type { Guia } from '../typings'
 export type GuiaCardProps = {
   guia: Guia
   className?: string
+  /**
+   * Faz a foto do card "foto" esticar para preencher a altura da célula.
+   * Só o bento da home usa: lá esse card ocupa duas linhas do grid e precisa
+   * acompanhar a altura dos dois cards ao lado. No "Confira mais" as células
+   * têm altura livre, então a foto fica na proporção nativa (mais nítida).
+   */
+  preencherAltura?: boolean
 }
 
 /**
- * Card reutilizável dos guias. Usado no bento "Tem alguma dúvida?" da home e
- * na seção `ConfiraMais` de cada página de guia — mesmo componente nos dois
- * lugares, só muda o tamanho da célula do grid ao redor.
+ * Card reutilizável dos guias — usado no bento "Tem alguma dúvida?" da home e na
+ * seção `ConfiraMais` de cada página de guia.
  *
- * Temas:
- * - "verde" / "creme": fundo chapado, texto no topo, imagem no canto
- *   inferior direito (a imagem fica no seu próprio bloco, sempre abaixo do
- *   texto no fluxo — nunca sobrepõe).
- * - "foto": a imagem preenche o card inteiro; um cartão flutuante com ícone
- *   fica no canto inferior esquerdo (usado só pelo guia "como tirar medidas").
+ * Cada tema tem um tratamento de imagem próprio, e isso NÃO é decoração: as
+ * fotos vêm dos cards do Framer (que foram exportados como imagens chapadas com
+ * o texto queimado) e cada uma tem um enquadramento diferente. Jogar as três
+ * numa mesma caixa cortava objetos — a bobina de papel kraft sumia inteira do
+ * card de materiais, e a foto da trena era esticada 2x.
+ *
+ * - `foto`   → foto no topo e o texto numa faixa que atravessa a base. No modelo
+ *              o rótulo flutua SOBRE a foto, mas para isso a foto teria que ser
+ *              o fundo do card inteiro — e o asset tem só 406x335 nativos (não
+ *              existe maior no CDN do Framer), o que exigiria esticá-lo ~1,8x.
+ * - `verde`  → a pilha de papelão encosta no canto inferior direito. O recorte
+ *              já traz o verde do card ao redor, então `object-contain` funde.
+ * - `creme`  → os três materiais formam uma faixa que atravessa a base inteira
+ *              do card, na proporção nativa do recorte (1175x354).
  */
-export default function GuiaCard({ guia, className }: GuiaCardProps) {
+export default function GuiaCard({ guia, className, preencherAltura = false }: GuiaCardProps) {
+  const href = `/guia/${guia.slug}`
+  // `h-full` só quando o card precisa esticar (bento da home): com ele sempre
+  // ligado, o card assume a altura da linha do grid mesmo com `items-start`, e
+  // o card mais baixo ganhava um buraco entre o texto e a imagem.
+  const base = cn(
+    'group relative flex flex-col overflow-hidden rounded-3xl transition-all duration-300 hover:-translate-y-1',
+    preencherAltura && 'h-full',
+  )
+
   if (guia.tema === 'foto') {
     return (
-      <Link
-        to={`/guia/${guia.slug}`}
-        className={cn(
-          'group relative flex h-full min-h-[280px] overflow-hidden rounded-3xl',
-          className,
-        )}
-      >
+      <Link to={href} className={cn(base, 'bg-brand-surface shadow-sm hover:shadow-md', className)}>
         <img
           src={guia.cardImg}
           alt=""
           aria-hidden="true"
           loading="lazy"
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className={cn(
+            'w-full object-cover transition-transform duration-300 group-hover:scale-105',
+            // `min-h-0` porque item de flex não encolhe abaixo do conteúdo.
+            preencherAltura ? 'min-h-0 flex-1' : 'aspect-[4/3]',
+          )}
         />
 
-        <div className="relative z-10 mt-auto max-w-[75%] rounded-2xl bg-brand-surface p-5 shadow-sm sm:max-w-[70%]">
+        <div className="relative z-10 bg-brand-surface p-6">
           <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-green-soft text-brand-primary">
             <Ruler className="h-4 w-4" aria-hidden="true" />
           </span>
@@ -55,36 +76,52 @@ export default function GuiaCard({ guia, className }: GuiaCardProps) {
 
   return (
     <Link
-      to={`/guia/${guia.slug}`}
+      to={href}
       className={cn(
-        'group relative flex h-full min-h-[280px] flex-col overflow-hidden rounded-3xl transition-all duration-300 hover:-translate-y-1',
+        base,
         isVerde ? 'bg-brand-primary' : 'bg-brand-surface shadow-sm hover:shadow-md',
         className,
       )}
     >
-      <div className="relative z-10 max-w-[85%] p-8 pb-4">
+      {/* Padding e tipografia enxutos de propósito: a altura destes dois cards
+          define a altura do card da esquerda (row-span-2). Quanto mais altos
+          eles ficam, mais a foto de lá precisa ser esticada. */}
+      <div className="relative z-10 p-6 pb-3">
         <h3
           className={cn(
-            'font-serif text-2xl leading-snug sm:text-3xl',
+            'font-serif text-2xl leading-snug',
             isVerde ? 'text-brand-surface' : 'text-brand-primary',
           )}
         >
           {guia.chamada}
         </h3>
-        <p className={cn('mt-3 text-sm sm:text-base', isVerde ? 'text-brand-surface/85' : 'text-brand-muted')}>
+        <p
+          className={cn(
+            'mt-2 max-w-[85%] text-sm',
+            isVerde ? 'text-brand-surface/85' : 'text-brand-muted',
+          )}
+        >
           {guia.subtitulo}
         </p>
       </div>
 
-      <div className="relative mt-auto h-32 w-full sm:h-40">
+      {isVerde ? (
         <img
           src={guia.cardImg}
           alt=""
           aria-hidden="true"
           loading="lazy"
-          className="pointer-events-none absolute bottom-0 right-0 h-full w-[55%] rounded-tl-3xl object-cover transition-transform duration-300 group-hover:scale-105"
+          className="pointer-events-none mt-auto ml-auto w-[55%] object-contain object-right-bottom transition-transform duration-300 group-hover:scale-105"
         />
-      </div>
+      ) : (
+        <img
+          src={guia.cardImg}
+          alt=""
+          aria-hidden="true"
+          loading="lazy"
+          className="pointer-events-none mt-auto aspect-[1175/354] w-full object-cover object-bottom transition-transform duration-300 group-hover:scale-105"
+        />
+      )}
     </Link>
   )
 }

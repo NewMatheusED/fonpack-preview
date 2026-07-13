@@ -16,7 +16,11 @@ export default function ConfiraMais({ slugAtual }: ConfiraMaisProps) {
           Confira mais
         </h2>
 
-        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+        {/* Mesma largura do bento da home (~896px). Num grid de largura total os
+            cards passam de 800px, a foto do card "foto" cresce junto (ela é
+            flex-1) e o card ao lado ganha um buraco enorme entre o texto e a
+            imagem. As fotos vêm de assets pequenos: card largo = foto esticada. */}
+        <div className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-6 sm:grid-cols-2">
           {outros.map((guia) => (
             <GuiaCard key={guia.slug} guia={guia} />
           ))}

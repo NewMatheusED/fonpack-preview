@@ -1,0 +1,10 @@
+import puppeteer from 'puppeteer-core'
+const B = await puppeteer.launch({ executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe', headless:'new', args:['--no-sandbox','--hide-scrollbars'] })
+const p = await B.newPage(); await p.setViewport({ width:1440, height:900, deviceScaleFactor:2 })
+await p.goto('http://localhost:4402/guia/qual-onda-escolher', { waitUntil:'networkidle0' })
+await p.evaluate(async()=>{const h=document.body.scrollHeight;for(let y=0;y<h;y+=300){window.scrollTo(0,y);await new Promise(r=>setTimeout(r,80))}})
+await new Promise(r=>setTimeout(r,900))
+const sec = await p.evaluateHandle(()=>[...document.querySelectorAll('section')].find(s=>/Confira mais/.test(s.innerText)))
+await sec.asElement().screenshot({ path:'docs/reference/audit/confira-mais.png' })
+console.log('ok')
+await B.close()

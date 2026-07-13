@@ -29,12 +29,18 @@ export default function OrcamentoPage() {
 
         <div className="mt-8">
           {vazio ? (
-            <div className="flex min-h-[110px] w-full items-center justify-center rounded-md bg-brand-surface px-6 py-8 sm:w-3/5">
+            <div className="flex min-h-[180px] w-full items-center justify-center rounded-md bg-brand-surface px-6 py-12">
               <div className="text-center">
                 <p className="font-bold text-brand">Seu orçamento está vazio</p>
                 <p className="mt-1 text-sm text-brand-muted">
                   Adicione produtos na loja para solicitar cotação.
                 </p>
+                <Link
+                  to="/loja"
+                  className="mt-6 inline-flex items-center justify-center rounded-full bg-brand-primary px-6 py-3 text-sm font-semibold text-brand-surface transition-colors hover:bg-brand-primary-2"
+                >
+                  Ver os produtos
+                </Link>
               </div>
             </div>
           ) : (

@@ -21,7 +21,11 @@ const navLinks = [
 export default function Header() {
   return (
     <header className="sticky top-0 z-30 border-b border-brand-accent/30 bg-brand-surface">
-      <div className="mx-auto grid h-16 max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-3 px-4 sm:px-6 lg:px-8">
+      {/* O wordmark é posicionado no centro absoluto do container, não numa
+          coluna de grid: o monograma (~44px) e o bloco da direita (~300px) têm
+          larguras diferentes, então uma coluna `1fr` entre os dois centralizaria
+          a marca entre eles — visivelmente torta em relação à tela. */}
+      <div className="relative mx-auto flex h-16 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
         <Link
           to="/"
           className="flex h-11 w-11 shrink-0 items-center justify-center"
@@ -32,7 +36,8 @@ export default function Header() {
 
         <Link
           to="/"
-          className="flex min-h-11 flex-col items-center justify-center text-center leading-none"
+          aria-label="FonPack Embalagens — início"
+          className="absolute left-1/2 flex min-h-11 -translate-x-1/2 flex-col items-center justify-center text-center leading-none"
         >
           <span className="font-sans text-xl text-brand-primary">FonPack</span>
           <span className="mt-1 text-[9px] uppercase tracking-[0.25em] text-brand-primary">

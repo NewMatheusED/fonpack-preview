@@ -19,6 +19,7 @@ export default function VariationStepper({ produto }: VariationStepperProps) {
   const { selecao, setOpcao, setSwatch, setToggle, setTexto, resumo, selecaoCompleta, faltando } =
     useVariationSelection(produto.variacoes)
   const add = useCart((s) => s.add)
+  const totalItens = useCart((s) => s.totalItens())
   const [adicionado, setAdicionado] = useState(false)
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
@@ -145,13 +146,15 @@ export default function VariationStepper({ produto }: VariationStepperProps) {
         </button>
 
         {/* No celular o badge do carrinho fica lá no topo da tela — sem este
-            atalho, quem acabou de adicionar não tem caminho para fechar. */}
-        {adicionado && (
+            atalho, quem adicionou não tem caminho para fechar o pedido. Fica
+            enquanto houver item no orçamento; se dependesse do "Adicionado ✓",
+            sumiria junto com ele em 2s. */}
+        {totalItens > 0 && (
           <Link
             to="/orcamento"
             className="-mt-1 text-center text-sm font-semibold text-brand-primary underline underline-offset-4"
           >
-            Ver meu orçamento
+            Ver meu orçamento ({totalItens})
           </Link>
         )}
 

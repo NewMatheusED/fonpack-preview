@@ -1,7 +1,7 @@
 import puppeteer from 'puppeteer-core'
 const B = await puppeteer.launch({ executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe', headless:'new', args:['--no-sandbox'] })
 const p = await B.newPage(); await p.setViewport({ width:1440, height:900 })
-await p.goto('http://localhost:4340/', { waitUntil:'networkidle0' })
+await p.goto('http://localhost:4341/', { waitUntil:'networkidle0' })
 
 // rola até o fundo da home
 await p.evaluate(() => window.scrollTo(0, document.body.scrollHeight))

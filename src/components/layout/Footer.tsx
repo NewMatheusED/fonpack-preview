@@ -52,21 +52,23 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div aria-hidden="true" className="hidden md:block" />
+          {/* Terceira coluna: é ela que a marca d'água ocupa no desktop. Antes
+              era uma div vazia e o "F" ficava espremido fora dela, deixando um
+              vão enorme à direita. */}
+          <div aria-hidden="true" className="relative hidden md:block">
+            <span className="pointer-events-none absolute -top-6 right-0 select-none font-script text-[15rem] leading-[0.75] text-brand-primary/25 lg:text-[17rem]">
+              F
+            </span>
+          </div>
         </div>
 
-        {/* Marca d'água. Três cuidados aqui:
-            - opacidade baixa: em cor cheia ela competia com o texto e o botão
-              flutuante do WhatsApp (que é fixo no canto inferior direito da
-              viewport) pousava em cima dela;
-            - tamanho que cabe na altura do footer: o glifo da Italianno é mais
-              alto que a própria font-size, e o `overflow-hidden` decepava o topo
-              dele numa linha reta;
-            - `-bottom` pequeno: o corte acontece na base, que lê como sangria
-              intencional, e não no topo, que lê como bug. */}
+        {/* No mobile não existe terceira coluna: a marca fica atrás do conteúdo,
+            à direita, grande mas discreta. O botão flutuante do WhatsApp é fixo
+            no canto inferior direito da viewport e pousa por cima — em opacidade
+            baixa isso lê como textura, não como sobreposição quebrada. */}
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute -bottom-6 right-0 select-none font-script text-[7rem] leading-[0.8] text-brand-primary/10 sm:-bottom-8 sm:text-[10rem] lg:-bottom-10 lg:text-[13rem]"
+          className="pointer-events-none absolute bottom-0 right-0 select-none font-script text-[9rem] leading-[0.75] text-brand-primary/15 md:hidden"
         >
           F
         </span>

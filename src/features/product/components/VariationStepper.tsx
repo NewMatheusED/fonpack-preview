@@ -3,7 +3,7 @@ import { useCart } from '@/features/cart/store'
 import { buildItemUrl } from '@/lib/whatsapp'
 import { cn } from '@/lib/utils'
 import type { Produto } from '@/features/catalog/typings'
-import { montarResumo, useVariationSelection } from '../hooks'
+import { useVariationSelection } from '../hooks'
 import { hashResumo } from '../utils'
 import OptionRow from './OptionRow'
 import ColorSwatch from './ColorSwatch'
@@ -15,7 +15,8 @@ type VariationStepperProps = {
 }
 
 export default function VariationStepper({ produto }: VariationStepperProps) {
-  const { selecao, setOpcao, setSwatch, setToggle, setTexto, resumo } = useVariationSelection(produto.variacoes)
+  const { selecao, setOpcao, setSwatch, setToggle, setTexto, resumo, selecaoCompleta, faltando } =
+    useVariationSelection(produto.variacoes)
   const add = useCart((s) => s.add)
   const [adicionado, setAdicionado] = useState(false)
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
@@ -30,6 +31,8 @@ export default function VariationStepper({ produto }: VariationStepperProps) {
   const stepAtivo = stepConcluido.findIndex((concluido) => !concluido)
 
   function handleAdicionar() {
+    if (!selecaoCompleta) return
+
     add({
       id: `${produto.slug}#${hashResumo(resumo)}`,
       produtoSlug: produto.slug,
@@ -87,15 +90,13 @@ export default function VariationStepper({ produto }: VariationStepperProps) {
             </h3>
 
             {grupo.tipo === 'opcoes' && (
-              <div className="flex flex-col gap-3">
+              <div role="radiogroup" aria-label={grupo.titulo} className="flex flex-col gap-3">
                 {grupo.opcoes.map((opcao) => (
                   <OptionRow
                     key={opcao.value}
-                    produtoSlug={produto.slug}
-                    produtoNome={produto.nome}
                     opcao={opcao}
-                    resumo={montarResumo(produto.variacoes, selecao, { tipo: 'opcoes', valor: opcao.label })}
-                    onEscolher={() => setOpcao(opcao.label)}
+                    selecionada={selecao[grupo.titulo] === opcao.label}
+                    onSelecionar={() => setOpcao(opcao.label)}
                   />
                 ))}
               </div>
@@ -129,16 +130,29 @@ export default function VariationStepper({ produto }: VariationStepperProps) {
         <button
           type="button"
           onClick={handleAdicionar}
+          disabled={!selecaoCompleta}
           aria-live="polite"
           className={cn(
             'w-full rounded-xl px-5 py-3.5 text-sm font-semibold transition-colors',
             adicionado
               ? 'bg-brand-green-soft text-brand-primary'
               : 'bg-brand-primary text-brand-surface hover:bg-brand-primary-2',
+            'disabled:cursor-not-allowed disabled:bg-brand-muted/30 disabled:text-brand-muted disabled:hover:bg-brand-muted/30',
           )}
         >
           {adicionado ? 'Adicionado ✓' : 'Adicionar ao orçamento'}
         </button>
+
+        {!selecaoCompleta && (
+          <p className="-mt-1 text-center text-xs text-brand-muted">
+            {/* Os títulos dos grupos já são imperativos ("Escolha a cor"), então
+                entram na frase como estão — só o primeiro mantém a maiúscula. */}
+            {faltando
+              .map((titulo, i) => (i === 0 ? titulo : titulo.toLowerCase()))
+              .join(' e ')}{' '}
+            para adicionar ao orçamento.
+          </p>
+        )}
         <a
           href={buildItemUrl(produto.nome, resumo)}
           target="_blank"

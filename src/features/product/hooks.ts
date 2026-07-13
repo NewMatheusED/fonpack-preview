@@ -7,22 +7,17 @@ function tituloPorTipo(variacoes: VariationGroup[], tipo: VariationGroup['tipo']
   return variacoes.find((grupo) => grupo.tipo === tipo)?.titulo
 }
 
-/**
- * Monta o texto "titulo: valor | titulo: valor" na ordem dos grupos de variação.
- * `override` permite calcular o resumo como se um grupo específico (pelo `tipo`)
- * tivesse um valor diferente do que está em `selecao` — usado pelo botão "+" de
- * cada opção, que adiciona ao orçamento sem esperar o próximo render.
- */
-export function montarResumo(
-  variacoes: VariationGroup[],
-  selecao: VariationSelection,
-  override?: { tipo: VariationGroup['tipo']; valor: string },
-): string {
-  const tituloOverride = override ? tituloPorTipo(variacoes, override.tipo) : undefined
+/** Grupos que o cliente precisa escolher para o orçamento fazer sentido. O
+ *  toggle tem default implícito ("Não") e o texto é livre, então são opcionais. */
+function ehObrigatorio(grupo: VariationGroup): boolean {
+  return grupo.tipo === 'opcoes' || grupo.tipo === 'swatch'
+}
 
+/** Monta o texto "titulo: valor | titulo: valor" na ordem dos grupos de variação. */
+export function montarResumo(variacoes: VariationGroup[], selecao: VariationSelection): string {
   return variacoes
     .map((grupo) => {
-      const valor = grupo.titulo === tituloOverride ? override!.valor : selecao[grupo.titulo]
+      const valor = selecao[grupo.titulo]
       return valor ? `${grupo.titulo}: ${valor}` : null
     })
     .filter((linha): linha is string => Boolean(linha))
@@ -45,5 +40,13 @@ export function useVariationSelection(variacoes: VariationGroup[]) {
 
   const resumo = montarResumo(variacoes, selecao)
 
-  return { selecao, setOpcao, setSwatch, setToggle, setTexto, resumo }
+  /** Enquanto faltar um grupo obrigatório, o produto não pode entrar no
+   *  orçamento — senão o pedido chega no WhatsApp sem dizer o que é. */
+  const faltando = variacoes
+    .filter((grupo) => ehObrigatorio(grupo) && !selecao[grupo.titulo])
+    .map((grupo) => grupo.titulo)
+
+  const selecaoCompleta = faltando.length === 0
+
+  return { selecao, setOpcao, setSwatch, setToggle, setTexto, resumo, selecaoCompleta, faltando }
 }

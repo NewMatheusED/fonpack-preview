@@ -1,51 +1,49 @@
-import { Plus } from 'lucide-react'
-import { useCart } from '@/features/cart/store'
+import { Check, Plus } from 'lucide-react'
+import { cn } from '@/lib/utils'
 import type { VariationGroup } from '@/features/catalog/typings'
-import { hashResumo } from '../utils'
 
 type VariationOption = Extract<VariationGroup, { tipo: 'opcoes' }>['opcoes'][number]
 
 type OptionRowProps = {
-  produtoSlug: string
-  produtoNome: string
   opcao: VariationOption
-  /** Resumo completo do orçamento já considerando esta opção escolhida. */
-  resumo: string
-  onEscolher?: () => void
+  selecionada: boolean
+  onSelecionar: () => void
 }
 
-export default function OptionRow({ produtoSlug, produtoNome, opcao, resumo, onEscolher }: OptionRowProps) {
-  const add = useCart((s) => s.add)
-
-  function handleClick() {
-    onEscolher?.()
-    add({
-      id: `${produtoSlug}#${hashResumo(resumo)}`,
-      produtoSlug,
-      nome: produtoNome,
-      variacaoResumo: resumo,
-      quantidade: 1,
-    })
-  }
-
+/**
+ * Uma opção de variação (ex.: a onda do papelão). É um controle de SELEÇÃO —
+ * clicar aqui só escolhe a opção; quem coloca o item no orçamento é o botão
+ * "Adicionar ao orçamento" no fim do formulário.
+ */
+export default function OptionRow({ opcao, selecionada, onSelecionar }: OptionRowProps) {
   return (
-    <div className="flex items-center justify-between gap-4 rounded-2xl bg-brand-surface px-5 py-4 transition-colors hover:bg-brand-accent/10">
-      <div>
-        <p className="text-sm font-semibold text-brand-primary">{opcao.label}</p>
+    <button
+      type="button"
+      role="radio"
+      aria-checked={selecionada}
+      onClick={onSelecionar}
+      className={cn(
+        'flex w-full items-center justify-between gap-4 rounded-2xl px-5 py-4 text-left transition-colors',
+        selecionada
+          ? 'bg-brand-green-soft ring-2 ring-brand-primary'
+          : 'bg-brand-surface hover:bg-brand-accent/10',
+      )}
+    >
+      <span>
+        <span className="block text-sm font-semibold text-brand-primary">{opcao.label}</span>
         {opcao.sublabel && (
-          <p className="mt-0.5 text-xs font-medium uppercase tracking-wide text-brand-muted">
+          <span className="mt-0.5 block text-xs font-medium uppercase tracking-wide text-brand-muted">
             {opcao.sublabel}
-          </p>
+          </span>
         )}
-      </div>
-      <button
-        type="button"
-        aria-label={`Adicionar ${opcao.label} ao orçamento`}
-        onClick={handleClick}
-        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-primary text-brand-surface transition-colors hover:bg-brand-primary-2"
+      </span>
+
+      <span
+        aria-hidden="true"
+        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-primary text-brand-surface"
       >
-        <Plus className="h-4 w-4" />
-      </button>
-    </div>
+        {selecionada ? <Check className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+      </span>
+    </button>
   )
 }

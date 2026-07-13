@@ -45,6 +45,46 @@ export default function GuiaCard({ guia, className, preencherAltura = false }: G
   )
 
   if (guia.tema === 'foto') {
+    const rotulo = (
+      <>
+        <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-green-soft text-brand-primary">
+          <Ruler className="h-4 w-4" aria-hidden="true" />
+        </span>
+        <h3 className="mt-3 font-serif text-xl leading-snug text-brand-primary sm:text-2xl">
+          {guia.chamada}
+        </h3>
+        <p className="mt-1.5 text-xs text-brand-muted sm:text-sm">{guia.subtitulo}</p>
+      </>
+    )
+
+    // Altura livre (ConfiraMais): o card assume a proporção NATIVA da foto, então
+    // ela preenche o card inteiro sem esticar (1,07x) e o rótulo volta a flutuar
+    // por cima, como no modelo. De quebra o card fica baixo, na mesma altura dos
+    // cards ao lado — antes ele crescia e abria um buraco no card vizinho.
+    if (!preencherAltura) {
+      return (
+        <Link
+          to={href}
+          className={cn(base, 'aspect-[406/335] bg-brand-surface shadow-sm hover:shadow-md', className)}
+        >
+          <img
+            src={guia.cardImg}
+            alt=""
+            aria-hidden="true"
+            loading="lazy"
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div className="relative z-10 mt-auto m-4 max-w-[78%] rounded-2xl bg-brand-surface p-5 shadow-sm">
+            {rotulo}
+          </div>
+        </Link>
+      )
+    }
+
+    // Bento da home: a célula é alta (o card ocupa duas linhas), então a foto não
+    // tem como preencher sozinha sem esticar demais. Aqui ela fica no topo e o
+    // texto vira uma faixa na base. `min-h-0` porque item de flex não encolhe
+    // abaixo do conteúdo.
     return (
       <Link to={href} className={cn(base, 'bg-brand-surface shadow-sm hover:shadow-md', className)}>
         <img
@@ -52,22 +92,9 @@ export default function GuiaCard({ guia, className, preencherAltura = false }: G
           alt=""
           aria-hidden="true"
           loading="lazy"
-          className={cn(
-            'w-full object-cover transition-transform duration-300 group-hover:scale-105',
-            // `min-h-0` porque item de flex não encolhe abaixo do conteúdo.
-            preencherAltura ? 'min-h-0 flex-1' : 'aspect-[4/3]',
-          )}
+          className="min-h-0 w-full flex-1 object-cover transition-transform duration-300 group-hover:scale-105"
         />
-
-        <div className="relative z-10 bg-brand-surface p-6">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-brand-green-soft text-brand-primary">
-            <Ruler className="h-4 w-4" aria-hidden="true" />
-          </span>
-          <h3 className="mt-3 font-serif text-xl leading-snug text-brand-primary sm:text-2xl">
-            {guia.chamada}
-          </h3>
-          <p className="mt-1.5 text-xs text-brand-muted sm:text-sm">{guia.subtitulo}</p>
-        </div>
+        <div className="relative z-10 bg-brand-surface p-6">{rotulo}</div>
       </Link>
     )
   }

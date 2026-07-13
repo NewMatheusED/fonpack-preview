@@ -62,11 +62,17 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* No mobile a marca d'água não entra. O footer é uma coluna estreita e o
-            botão flutuante do WhatsApp é `fixed` no canto inferior direito da
-            viewport — bem onde o glifo teria que ficar. Em qualquer tamanho ele
-            acabava cortado pela borda, com o botão pousado por cima. Um ornamento
-            sempre meio encoberto não é ornamento, é sujeira. */}
+        {/* No mobile a marca fica à direita da lista "Links rápidos" — a lista é
+            estreita e sobra a metade direita do footer. Ela NÃO pode ir para o
+            canto inferior direito: o botão flutuante do WhatsApp é `fixed` ali e
+            pousaria em cima. Daí o `bottom-24`, que a mantém acima da zona do
+            botão, e o `right-6`, que a mantém dentro da borda. */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-24 right-12 select-none font-script text-[7.5rem] leading-[0.75] text-brand-primary/20 md:hidden"
+        >
+          F
+        </span>
       </div>
     </footer>
   )

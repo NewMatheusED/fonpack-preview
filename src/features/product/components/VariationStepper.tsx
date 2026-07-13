@@ -6,7 +6,9 @@ import { cn } from '@/lib/utils'
 import type { Produto } from '@/features/catalog/typings'
 import { useVariationSelection } from '../hooks'
 import { hashResumo } from '../utils'
+import { QTD_MIN } from '../quantidade'
 import OptionRow from './OptionRow'
+import QuantityField from './QuantityField'
 import ColorSwatch from './ColorSwatch'
 import ToggleField from './ToggleField'
 import TextField from './TextField'
@@ -16,10 +18,20 @@ type VariationStepperProps = {
 }
 
 export default function VariationStepper({ produto }: VariationStepperProps) {
-  const { selecao, setOpcao, setSwatch, setToggle, setTexto, resumo, selecaoCompleta, faltando } =
-    useVariationSelection(produto.variacoes)
+  const {
+    selecao,
+    setOpcao,
+    setSwatch,
+    setToggle,
+    setTexto,
+    resumo,
+    especificacoes,
+    selecaoCompleta,
+    faltando,
+  } = useVariationSelection(produto.variacoes)
   const add = useCart((s) => s.add)
   const totalItens = useCart((s) => s.totalItens())
+  const [quantidade, setQuantidade] = useState(QTD_MIN)
   const [adicionado, setAdicionado] = useState(false)
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
 
@@ -40,7 +52,7 @@ export default function VariationStepper({ produto }: VariationStepperProps) {
       produtoSlug: produto.slug,
       nome: produto.nome,
       variacaoResumo: resumo,
-      quantidade: 1,
+      quantidade,
     })
     setAdicionado(true)
     clearTimeout(timeoutRef.current)
@@ -93,12 +105,16 @@ export default function VariationStepper({ produto }: VariationStepperProps) {
 
             {grupo.tipo === 'opcoes' && (
               <div role="radiogroup" aria-label={grupo.titulo} className="flex flex-col gap-3">
+                {/* Comparar pelo `value`, nunca pelo label: a Fita Gomada tem
+                    duas opções chamadas "60mm" (uma delas personalizada) e a
+                    Fita Acrílica duas "48x100 - 2 CORES". Pelo label, clicar
+                    numa acendia as duas. */}
                 {grupo.opcoes.map((opcao) => (
                   <OptionRow
                     key={opcao.value}
                     opcao={opcao}
-                    selecionada={selecao[grupo.titulo] === opcao.label}
-                    onSelecionar={() => setOpcao(opcao.label)}
+                    selecionada={selecao[grupo.titulo] === opcao.value}
+                    onSelecionar={() => setOpcao(opcao.value)}
                   />
                 ))}
               </div>
@@ -126,33 +142,72 @@ export default function VariationStepper({ produto }: VariationStepperProps) {
             )}
           </div>
         ))}
+
+        {/* Quantidade em linha própria, e não dentro de cada opção. No modelo do
+            Framer a quantidade fica colada na linha da variação, e daí vem um
+            defeito: escolher duas medidas obriga as duas à mesma cor. Aqui a
+            página configura UM item completo (medida + cor + impressão +
+            quantidade); querendo outra medida, é só configurar de novo e
+            adicionar — vira outra linha do orçamento, com a cor dela própria. */}
+        <div>
+          <h3 className="mb-3 text-xs font-semibold uppercase tracking-wide text-brand-muted">
+            {produto.variacoes.length + 1}°: QUANTIDADE
+          </h3>
+          <QuantityField value={quantidade} onChange={setQuantidade} />
+        </div>
       </div>
 
+      {especificacoes.length > 0 && (
+        <div className="mt-8 rounded-2xl bg-brand-surface-2 p-5">
+          <h3 className="text-xs font-semibold uppercase tracking-wide text-brand-muted">
+            Resumo do item
+          </h3>
+          <dl className="mt-3 space-y-1.5">
+            {especificacoes.map((espec) => (
+              <div key={espec.rotulo} className="flex gap-2 text-sm">
+                <dt className="text-brand-muted">{espec.rotulo}:</dt>
+                <dd className="font-medium text-brand">{espec.valor}</dd>
+              </div>
+            ))}
+            <div className="flex gap-2 text-sm">
+              <dt className="text-brand-muted">Quantidade:</dt>
+              <dd className="font-medium text-brand">{quantidade}</dd>
+            </div>
+          </dl>
+        </div>
+      )}
+
       <div className="mt-8 flex flex-col gap-3">
+        {/* O rótulo do botão NÃO muda ao adicionar. Trocá-lo por "Adicionado ✓"
+            renomeava o controle: quem usa leitor de tela perdia o botão, e o
+            cliente que quisesse adicionar de novo não achava mais o mesmo alvo.
+            A confirmação vive numa região `status` própria, logo abaixo. */}
         <button
           type="button"
           onClick={handleAdicionar}
           disabled={!selecaoCompleta}
-          aria-live="polite"
+          className="w-full rounded-xl bg-brand-primary px-5 py-3.5 text-sm font-semibold text-brand-surface transition-colors hover:bg-brand-primary-2 disabled:cursor-not-allowed disabled:bg-brand-muted/30 disabled:text-brand-muted disabled:hover:bg-brand-muted/30"
+        >
+          Adicionar ao orçamento
+        </button>
+
+        <p
+          role="status"
           className={cn(
-            'w-full rounded-xl px-5 py-3.5 text-sm font-semibold transition-colors',
-            adicionado
-              ? 'bg-brand-green-soft text-brand-primary'
-              : 'bg-brand-primary text-brand-surface hover:bg-brand-primary-2',
-            'disabled:cursor-not-allowed disabled:bg-brand-muted/30 disabled:text-brand-muted disabled:hover:bg-brand-muted/30',
+            'rounded-xl bg-brand-green-soft px-4 py-2.5 text-center text-sm font-semibold text-brand-primary transition-opacity',
+            adicionado ? 'opacity-100' : 'sr-only opacity-0',
           )}
         >
-          {adicionado ? 'Adicionado ✓' : 'Adicionar ao orçamento'}
-        </button>
+          {adicionado ? 'Produto adicionado com sucesso!' : ''}
+        </p>
 
         {/* No celular o badge do carrinho fica lá no topo da tela — sem este
             atalho, quem adicionou não tem caminho para fechar o pedido. Fica
-            enquanto houver item no orçamento; se dependesse do "Adicionado ✓",
-            sumiria junto com ele em 2s. */}
+            enquanto houver item no orçamento, não só durante a confirmação. */}
         {totalItens > 0 && (
           <Link
             to="/orcamento"
-            className="-mt-1 text-center text-sm font-semibold text-brand-primary underline underline-offset-4"
+            className="text-center text-sm font-semibold text-brand-primary underline underline-offset-4"
           >
             Ver meu orçamento ({totalItens})
           </Link>

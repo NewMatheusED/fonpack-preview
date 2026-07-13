@@ -230,4 +230,13 @@ code {
     font-weight: 500;
     color: var(--text-h);
   }
+
+  /* Garante um anel de foco visível e na cor da marca em links/botões
+     que não usam os componentes shadcn (que já tratam focus-visible). */
+  a:focus-visible,
+  button:focus-visible,
+  [role='button']:focus-visible {
+    outline: 2px solid var(--color-brand-primary);
+    outline-offset: 2px;
+  }
 }

@@ -61,7 +61,7 @@ export default function Header() {
         <div className="flex items-center gap-1 md:hidden">
           <CartButton />
           <Sheet>
-            <SheetTrigger render={<Button variant="ghost" size="icon" />}>
+            <SheetTrigger render={<Button variant="ghost" size="icon" className="h-11 w-11" />}>
               <Menu className="h-5 w-5" />
               <span className="sr-only">Abrir menu</span>
             </SheetTrigger>

@@ -1,0 +1,116 @@
+import type { Guia, Material, Onda } from '../typings'
+
+export const guias: Guia[] = [
+  {
+    slug: 'como-tirar-medidas',
+    titulo: 'Como tirar as medidas da sua embalagem',
+    subtitulo: 'Aprenda a medir corretamente para encontrar a embalagem ideal',
+    chamada: 'Como tirar medidas?',
+    heroImg: '/guias/medidas-hero.webp',
+    // medidas-card.webp veio corrompido (contém print do card "Qual onda devo
+    // escolher?" em vez de uma foto) — reaproveita a foto da caixa na mesa.
+    cardImg: '/guias/medidas-caixa.webp',
+    tema: 'creme',
+  },
+  {
+    slug: 'qual-onda-escolher',
+    titulo: 'Qual onda escolher?',
+    subtitulo: 'Entenda as diferenças entre os tipos de onda e escolha a melhor proteção.',
+    chamada: 'Qual onda devo escolher?',
+    heroImg: '/guias/onda-hero.webp',
+    cardImg: '/guias/onda-bb.webp',
+    tema: 'verde',
+  },
+  {
+    slug: 'plastico-bolha-divisorias-ou-papel-kraft',
+    titulo: 'Plástico bolha, divisórias ou papel kraft?',
+    subtitulo: 'Compare os materiais e descubra qual é o mais adequado para o seu produto',
+    chamada: 'Plástico bolha, Papel kraft ou divisórias?',
+    heroImg: '/guias/materiais-hero.webp',
+    cardImg: '/guias/materiais-bolha.webp',
+    tema: 'creme',
+  },
+]
+
+export const ondas: Onda[] = [
+  {
+    nome: 'Onda D',
+    label: 'Ultrafina',
+    espessura: '≈ 2,2mm',
+    corClass: 'stroke-onda-d',
+    bullets: ['Produtos leves', 'Embalagens para brindes', 'Cosméticos e acessórios'],
+    diferencasVisuais: 'Ondas baixas e menos espaçadas',
+    imagem: '/guias/onda-d.webp',
+    amplitude: 3,
+    frequencia: 3,
+  },
+  {
+    nome: 'Onda B',
+    label: 'Fina',
+    espessura: '≈ 3mm',
+    corClass: 'stroke-onda-b',
+    bullets: ['Caixas de e-commerce', 'Alimentos', 'Caixas para uso geral.'],
+    diferencasVisuais: 'ondulações pequenas e próximas',
+    imagem: '/guias/onda-b.webp',
+    amplitude: 4,
+    frequencia: 9,
+  },
+  {
+    nome: 'Onda C',
+    label: 'Média',
+    espessura: '≈ 3,8mm',
+    corClass: 'stroke-onda-c',
+    bullets: ['Vidros e cerâmicas leves', 'Produtos frágeis', 'Eletrônicos leves'],
+    diferencasVisuais: 'ondas mais altas e mais espaçadas',
+    imagem: '/guias/onda-c.webp',
+    amplitude: 9,
+    frequencia: 4,
+  },
+  {
+    nome: 'Onda BB',
+    label: 'Reforçada',
+    espessura: '≈ 3,8mm',
+    corClass: 'stroke-onda-bb',
+    bullets: ['Transporte pesado', 'Empilhamento', 'Produtos industriais'],
+    diferencasVisuais: 'Duas camadas de onda B empilhadas',
+    imagem: '/guias/onda-bb.webp',
+    amplitude: 4,
+    frequencia: 9,
+    camadas: 2,
+  },
+  {
+    nome: 'Onda BC',
+    label: 'Reforçada',
+    espessura: '≈ 6mm',
+    corClass: 'stroke-onda-bc',
+    bullets: ['Eletrodomésticos', 'Mudanças', 'Produtos pesados e frágeis.'],
+    diferencasVisuais: 'Duas camadas de onda, uma B e outra C',
+    imagem: '/guias/onda-bc.webp',
+    amplitude: 7,
+    frequencia: 6,
+    camadas: 2,
+  },
+]
+
+export const materiais: Material[] = [
+  {
+    titulo: 'Plástico bolha',
+    bullets: ['Produtos frágeis', 'Vidros', 'Eletrônicos', 'Cerâmicas'],
+    beneficios: ['Absorve impactos', 'Protege contra riscos'],
+    // materiais-bolha.webp veio com o conteúdo errado (foto de divisórias) —
+    // reaproveita a foto de plástico-bolha do hero da própria página.
+    imagem: '/guias/materiais-hero.webp',
+  },
+  {
+    titulo: 'Divisórias',
+    bullets: ['Garrafas', 'Frascos', 'Copos', 'Delicados'],
+    beneficios: ['Evitam atritos durante o transporte'],
+    imagem: '/produtos/divisoria/0.webp',
+  },
+  {
+    titulo: 'Papel kraft',
+    bullets: ['Preenchimento de espaços', 'Proteção superficial'],
+    beneficios: ['Econômico', 'Reciclável', 'Versátil'],
+    imagem: '/guias/materiais-kraft.webp',
+  },
+]

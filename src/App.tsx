@@ -5,6 +5,9 @@ import LojaPage from './pages/LojaPage'
 import ProdutoPage from './pages/ProdutoPage'
 import SobrePage from './pages/SobrePage'
 import ContatoPage from './pages/ContatoPage'
+import GuiaMedidasPage from './pages/GuiaMedidasPage'
+import GuiaOndaPage from './pages/GuiaOndaPage'
+import GuiaMateriaisPage from './pages/GuiaMateriaisPage'
 
 export default function App() {
   return (
@@ -16,6 +19,12 @@ export default function App() {
           <Route path="catalogo/:slug" element={<ProdutoPage />} />
           <Route path="sobre-nos" element={<SobrePage />} />
           <Route path="fale-conosco" element={<ContatoPage />} />
+          <Route path="guia/como-tirar-medidas" element={<GuiaMedidasPage />} />
+          <Route path="guia/qual-onda-escolher" element={<GuiaOndaPage />} />
+          <Route
+            path="guia/plastico-bolha-divisorias-ou-papel-kraft"
+            element={<GuiaMateriaisPage />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

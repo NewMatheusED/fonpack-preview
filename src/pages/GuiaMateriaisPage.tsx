@@ -20,7 +20,7 @@ export default function GuiaMateriaisPage() {
         />
       </div>
 
-      <section className="bg-brand-surface pb-16 pt-14 lg:pb-24 lg:pt-20">
+      <section className="bg-brand-base pb-16 pt-14 lg:pb-24 lg:pt-20">
         <div className="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
           <h1 className="font-serif text-4xl text-brand-primary sm:text-5xl">
             Plástico bolha, divisórias ou papel kraft?

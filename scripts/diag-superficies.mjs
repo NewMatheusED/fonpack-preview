@@ -5,7 +5,7 @@ const hex=(r,g,b)=>'#'+[r,g,b].map(n=>n.toString(16).padStart(2,'0')).join('')
 const NOME={'#ffffff':'base (branco)','#f5efdd':'surface (creme)','#fbf8ef':'surface-2','#3c5e3d':'primary (verde)'}
 for (const [n,rota] of [['home','/'],['loja','/loja'],['produto','/catalogo/bobina-kraft'],['orcamento','/orcamento'],['sobre','/sobre-nos'],['contato','/fale-conosco'],['guia','/guia/como-tirar-medidas']]) {
   const p = await B.newPage(); await p.setViewport({ width:1440, height:900 })
-  await p.goto('http://localhost:4422'+rota, { waitUntil:'networkidle0' })
+  await p.goto('http://localhost:4424'+rota, { waitUntil:'networkidle0' })
   await p.evaluate(async()=>{const h=document.body.scrollHeight;for(let y=0;y<h;y+=300){window.scrollTo(0,y);await new Promise(r=>setTimeout(r,70))};window.scrollTo(0,0)})
   await new Promise(r=>setTimeout(r,900))
   const buf = await p.screenshot({ fullPage:true })

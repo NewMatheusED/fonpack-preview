@@ -10,9 +10,33 @@ export default function GuiaMedidasPage() {
         imagem="/guias/medidas-hero.webp"
       />
 
-      <section className="grid grid-cols-1 bg-brand-surface lg:grid-cols-2">
-        <div className="flex flex-col justify-center px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-          <h1 className="font-serif text-4xl leading-tight text-brand-primary sm:text-5xl">
+      {/* A foto sangra pela largura toda e o texto fica por cima da parte vazia
+          dela — o creme da esquerda é o fundo da própria foto, não um painel
+          pintado. Quando era um painel `bg-brand-surface`, ele saía exatamente
+          na mesma cor do header logo acima e os dois viravam um bloco só. */}
+      <section className="relative isolate overflow-hidden bg-brand-surface">
+        <img
+          src="/guias/medidas-hero.webp"
+          alt="Caixinhas de papelão kraft organizadas em grade"
+          fetchPriority="high"
+          className="absolute inset-0 hidden h-full w-full object-cover object-right lg:block"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-y-0 left-0 hidden w-2/3 bg-gradient-to-r from-brand-surface via-brand-surface/70 to-transparent lg:block"
+        />
+
+        <div className="relative h-[260px] w-full sm:h-[320px] lg:hidden">
+          <img
+            src="/guias/medidas-hero.webp"
+            alt="Caixinhas de papelão kraft organizadas em grade"
+            fetchPriority="high"
+            className="h-full w-full object-cover"
+          />
+        </div>
+
+        <div className="relative z-10 mx-auto flex max-w-7xl flex-col justify-center px-4 py-16 sm:px-6 lg:min-h-[480px] lg:px-8 lg:py-24">
+          <h1 className="max-w-xl font-serif text-4xl leading-tight text-brand-primary sm:text-5xl">
             Como tirar as medidas da sua embalagem
           </h1>
           <p className="mt-5 max-w-md text-base font-medium text-brand-primary sm:text-lg">
@@ -22,17 +46,9 @@ export default function GuiaMedidasPage() {
             Um guia simples para medir seu produto corretamente
           </p>
         </div>
-
-        <div className="relative min-h-[280px] lg:min-h-0">
-          <img
-            src="/guias/medidas-hero.webp"
-            alt="Caixinhas de papelão kraft organizadas em grade"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        </div>
       </section>
 
-      <section className="bg-brand-surface pb-20 pt-4 lg:pb-28">
+      <section className="bg-brand-base pb-20 pt-4 lg:pb-28">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
           <div className="overflow-hidden rounded-3xl">
             <img

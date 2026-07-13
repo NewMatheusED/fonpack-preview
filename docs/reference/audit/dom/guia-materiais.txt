@@ -1,0 +1,55 @@
+                <p> Loja
+                  <a> Loja
+                <p> Contatos
+                  <a> Contatos
+                <p> Sobre nós
+                  <a> Sobre nós
+            <h1> Plástico bolha, divisórias ou papel kraft?
+            <p> Cada material possui uma função diferente.
+            <p> Escolher o correto evita danos e reduz custos.
+              <li> Plástico bolha ✔ Absorve impactos ✔ Protege contra riscos Produtos frágeis Vidros Eletrônicos Cerâmicas
+                    <h2> Plástico bolha
+                        <p> ✔ Absorve impactos
+                        <p> ✔ Protege contra riscos
+                        <li> Produtos frágeis
+                          <p> Produtos frágeis
+                        <li> Vidros
+                          <p> Vidros
+                        <li> Eletrônicos
+                          <p> Eletrônicos
+                        <li> Cerâmicas
+                          <p> Cerâmicas
+              <li> Garrafas Frascos Copos Delicados Divisórias ✔ Evitam atritos durante o transporte
+                        <li> Garrafas
+                          <p> Garrafas
+                        <li> Frascos
+                          <p> Frascos
+                        <li> Copos
+                          <p> Copos
+                        <li> Delicados
+                          <p> Delicados
+                    <h2> Divisórias
+                        <p> ✔ Evitam atritos
+                        <p> durante o transporte
+              <li> Preenchimento de espaços Proteção superficial Papel kraft ✔ Econômico ✔ Reciclável ✔ Versátil
+                      <li> Preenchimento de espaços
+                        <p> Preenchimento de espaços
+                      <li> Proteção superficial
+                        <p> Proteção superficial
+                    <h2> Papel kraft
+                        <p> ✔ Econômico
+                        <p> ✔ Reciclável
+                        <p> ✔ Versátil
+          <p> Confira mais
+                <p> Fale conosco
+                <p> R. Sesefredo Klein Doll, 900 -
+                <p> Cipó, Embu-Guaçu - SP, 06933-080
+                <p> Whatsapp: (11) 94250-8424
+                <p> E-mail: fonpack@hotmail.com
+                <p> Links rápidos
+                <p> Nossa Loja
+                  <a> Nossa Loja
+                  <a> Fale conosco
+          <p> F
+  <a> Create a free website with Framer, the website builder loved by startups, designers and agencies.
+      <p> Create a free website with Framer, the website builder loved by startups, designers and agencies.

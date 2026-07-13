@@ -1,0 +1,55 @@
+                <p> Loja
+                  <a> Loja
+                <p> Contatos
+                  <a> Contatos
+                <p> Sobre nós
+                  <a> Sobre nós
+              <h6> Home
+                <a> Home
+              <h6> Loja
+                <a> Loja
+              <h6> Bobina
+                <a> Bobina
+              <h6> Bobina Kraft
+            <p> ‹ Fita Arquear
+              <a> ‹ Fita Arquear
+            <p> Bobina Semikraft ›
+              <a> Bobina Semikraft ›
+                <h1> Bobina Kraft
+                        <button> +
+                <button> Adicionar ao orçamento
+                <button> Comprar agora (WhatsApp)
+                <button> Falar com um especialista
+                <h3> Descrição Básica
+                  <li> Bobina de papel kraft 80g com acabamento natural e excelente resistência
+                  <li> Ideal para embrulho, proteção de produtos, preenchimento de embalagens e processos de expedição
+                  <li> Indicada para uso comercial, industrial, logístico e e-commerce
+                  <li> Disponível em diferentes larguras e metragens. Consulte as opções disponíveis.
+              <a> Ver orçamento
+                  <p> Sustentável
+                  <p> Materiais recicláveis e
+                  <p> compromisso com o futuro.
+                  <p> Resistência
+                  <p> Embalagens desenvolvidas
+                  <p> para proteger o que
+                  <p> realmente importa.
+                  <p> Personalizados
+                  <p> Soluções sob medida
+                  <p> para o seu negócio.
+                  <p> Entrega rápida
+                  <p> Agilidade e eficiência
+                  <p> em todo o Brasil.
+                      <p> Fale conosco
+                      <p> R. Sesefredo Klein Doll, 900 -
+                      <p> Cipó, Embu-Guaçu - SP, 06933-080
+                      <p> Whatsapp: (11) 94250-8424
+                      <p> E-mail: fonpack@hotmail.com
+                      <p> Links rápidos
+                      <p> Nossa Loja
+                        <a> Nossa Loja
+                      <p> Sobre nós
+                        <a> Sobre nós
+                        <a> Fale conosco
+                <p> F
+  <a> Create a free website with Framer, the website builder loved by startups, designers and agencies.
+      <p> Create a free website with Framer, the website builder loved by startups, designers and agencies.

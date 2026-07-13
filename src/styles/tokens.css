@@ -1,0 +1,27 @@
+/* tokens da marca — preenchido na Task 3 */
+/* fontes self-hosted (@fontsource/*) são importadas em src/main.tsx via JS import,
+   não via @import CSS aqui — evita bug de resolução de asset (url() de .woff2)
+   em @import CSS aninhado no pipeline do Vite/Rolldown. */
+
+@theme {
+  --color-brand: #2b2b2b; /* DEFAULT → text-brand */
+  --color-brand-primary: #3c5e3d;
+  --color-brand-primary-2: #567644;
+  --color-brand-green-soft: #bdd8b7;
+  --color-brand-surface: #f5f1e6;
+  --color-brand-surface-2: #fcfbf5;
+  --color-brand-accent: #dac195;
+  --color-brand-accent-2: #a57547;
+  --color-brand-muted: #858585;
+
+  --font-serif: 'Amiri', Georgia, serif;
+  --font-sans: 'Alata', system-ui, sans-serif;
+  --font-script: 'Italianno', cursive;
+
+  /* cores decorativas das linhas de onda no guia "Qual onda escolher?" */
+  --color-onda-d: #d6398f;
+  --color-onda-b: #e2412f;
+  --color-onda-c: #2f6fed;
+  --color-onda-bb: #2fae52;
+  --color-onda-bc: #8b3fe0;
+}

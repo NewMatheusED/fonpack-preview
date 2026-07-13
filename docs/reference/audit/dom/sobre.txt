@@ -1,0 +1,66 @@
+                <p> Loja
+                  <a> Loja
+                <p> Contatos
+                  <a> Contatos
+                <p> Sobre nós
+                  <a> Sobre nós
+              <h1> Quem somos
+              <h1> Seu parceiro em soluções que acompanham o crescimento do seu negócio.
+              <p> A FonPack Embalagens nasceu com o propósito de oferecer soluções
+              <p> completas em embalagens para empresas de diferentes segmentos.
+              <p> Com foco na qualidade, confiabilidade e bom atendimento, fornecemos
+              <p> produtos que garantem mais segurança, praticidade e eficiência.
+                  <p> Segurança
+                  <p> Proteção para seus produtos em todas
+                  <p> as etapas do armazenamento
+                  <p> e transporte.
+                  <p> Praticidade
+                  <p> Soluções que simplificam o
+                  <p> dia a dia e otimizam sua operação.
+                  <p> Eficiência
+                  <p> Produtos desenvolvidos para
+                  <p> oferecer desempenho e facilitar
+                  <p> seus processos logísticos.
+                  <p> Qualidade
+                  <p> Materiais resistentes e confiáveis
+                  <p> para garantir a melhor performance
+                  <p> em cada embalagem.
+            <h1> Qualidade que acompanha cada envio com segurança e confiança.
+            <p> A FonPack Embalagens oferece soluções completas para proteger,
+            <p> armazenar e transportar produtos com segurança. Trabalhamos com
+            <p> caixas de papelão, fitas, bobinas, materiais de proteção e diversos
+            <p> itens para atender empresas de diferentes segmentos.
+            <p> Nosso compromisso é fornecer produtos de qualidade, atendimento
+            <p> personalizado e soluções que agreguem eficiência, segurança e
+            <p> praticidade à operação de cada cliente.
+                <h1> Missão, visão e valores
+                <p> Os pilares que guia, cada embalagem que produzimos e cada cliente que atendemos
+                    <h1> Missão
+                    <p> Oferecer embalagens resistentes e
+                    <p> funcionais que garantam proteção,
+                    <p> praticidade e eficiência para o transporte
+                    <p> e armazenamento de produtos.
+                    <h1> Visão
+                    <p> Crescer de forma sólida no mercado de
+                    <p> embalagens, sendo reconhecida pela
+                    <p> qualidade, agilidade e confiança nas
+                    <p> entregas.
+                    <h1> Valores
+                    <p> Qualidade em primeiro lugar, compromisso
+                    <p> com prazos, respeito ao cliente, melhoria
+                    <p> contínua e responsabilidade em
+                    <p> cada processo.
+                  <p> Fale conosco
+                  <p> R. Sesefredo Klein Doll, 900 -
+                  <p> Cipó, Embu-Guaçu - SP, 06933-080
+                  <p> Whatsapp: (11) 94250-8424
+                  <p> E-mail: fonpack@hotmail.com
+                  <p> Links rápidos
+                  <p> Nossa Loja
+                    <a> Nossa Loja
+                  <p> Sobre nós
+                    <a> Sobre nós
+                    <a> Fale conosco
+            <p> F
+  <a> Create a free website with Framer, the website builder loved by startups, designers and agencies.
+      <p> Create a free website with Framer, the website builder loved by startups, designers and agencies.

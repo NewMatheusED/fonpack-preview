@@ -1,0 +1,37 @@
+          <h1> Como tirar as medidas da sua embalagem
+          <p> Aprenda a medir corretamente para encontrar
+          <p> a embalagem ideal
+          <p> Um guia simples para medir seu produto corretamente
+                <p> Loja
+                  <a> Loja
+                <p> Contatos
+                  <a> Contatos
+                <p> Sobre nós
+                  <a> Sobre nós
+                <h2> Meça da forma correta, evite erros
+                  <p> É importante informar as medidas na ordem correta:
+                  <p> Comprimento × Largura × Altura (C × L × A)
+                    <li> Comprimento: lado maior da base
+                      <p> Comprimento: lado maior da base
+                    <li> Largura: lado menor da base
+                      <p> Largura: lado menor da base
+                    <li> Altura: distância da base até a tampa
+                      <p> Altura: distância da base até a tampa
+                <p> As caixas de papelão são medidas pela parte interna,
+                <p> considerando o espaço útil disponível para acomodar o produto
+                  <p> Ainda não tem a caixa? Meça o produto e adicione uma pequena folga
+                  <p> para acomodação e, se necessário, para materiais de proteção
+                  <p> como plástico-bolha, papel kraft ou divisórias.
+          <p> Confira mais
+                <p> Fale conosco
+                <p> R. Sesefredo Klein Doll, 900 -
+                <p> Cipó, Embu-Guaçu - SP, 06933-080
+                <p> Whatsapp: (11) 94250-8424
+                <p> E-mail: fonpack@hotmail.com
+                <p> Links rápidos
+                <p> Nossa Loja
+                  <a> Nossa Loja
+                  <a> Fale conosco
+          <p> F
+  <a> Create a free website with Framer, the website builder loved by startups, designers and agencies.
+      <p> Create a free website with Framer, the website builder loved by startups, designers and agencies.

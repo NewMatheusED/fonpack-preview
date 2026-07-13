@@ -1,5 +1,6 @@
 import { it, expect, beforeEach } from 'vitest'
 import { render, screen, fireEvent } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 import { useCart } from '@/features/cart/store'
 import type { Produto } from '@/features/catalog/typings'
 import VariationStepper from './VariationStepper'
@@ -23,13 +24,22 @@ const produto: Produto = {
   ],
 }
 
+/** O componente mostra um link "Ver meu orçamento" depois de adicionar, então
+ *  precisa de contexto de router — na aplicação ele sempre vive dentro de um. */
+const montar = () =>
+  render(
+    <MemoryRouter>
+      <VariationStepper produto={produto} />
+    </MemoryRouter>,
+  )
+
 const opcao = (label: string) => screen.getByRole('radio', { name: new RegExp(`^${label}$`) })
 const botaoAdicionar = () => screen.getByRole('button', { name: /adicionar ao orçamento/i })
 
 beforeEach(() => useCart.getState().clear())
 
 it('escolher uma opção apenas seleciona — não coloca nada no orçamento', () => {
-  render(<VariationStepper produto={produto} />)
+  montar()
 
   fireEvent.click(opcao('B'))
 
@@ -39,7 +49,7 @@ it('escolher uma opção apenas seleciona — não coloca nada no orçamento', (
 })
 
 it('trocar de opção substitui a escolha em vez de acumular', () => {
-  render(<VariationStepper produto={produto} />)
+  montar()
 
   fireEvent.click(opcao('B'))
   fireEvent.click(opcao('C'))
@@ -51,7 +61,7 @@ it('trocar de opção substitui a escolha em vez de acumular', () => {
 })
 
 it('não dá para adicionar ao orçamento sem escolher a variação', () => {
-  render(<VariationStepper produto={produto} />)
+  montar()
 
   expect(botaoAdicionar()).toBeDisabled()
 
@@ -60,7 +70,7 @@ it('não dá para adicionar ao orçamento sem escolher a variação', () => {
 })
 
 it('com a variação escolhida, o botão adiciona o item com o resumo certo', () => {
-  render(<VariationStepper produto={produto} />)
+  montar()
 
   fireEvent.click(opcao('B'))
   expect(botaoAdicionar()).toBeEnabled()

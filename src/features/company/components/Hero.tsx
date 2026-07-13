@@ -1,24 +1,37 @@
 import { Link } from 'react-router-dom'
 
+/**
+ * Hero da home. A foto do modelo já traz a parede creme do lado esquerdo, então
+ * ela é o fundo inteiro da seção (não um painel recortado à direita) — é assim
+ * que a composição caixa + bobina + chapa aparece completa, como no Framer.
+ */
 export default function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-brand-surface lg:flex lg:min-h-[calc(100vh-4rem)] lg:items-stretch">
-      {/* Foto no mobile: fica acima do texto, sangrando na largura toda. */}
+    <section className="relative isolate overflow-hidden bg-brand-surface">
+      <img
+        src="/home/hero.webp"
+        alt="Caixa de papelão, bobina de papel kraft e chapa ondulada FonPack"
+        fetchPriority="high"
+        className="absolute inset-0 hidden h-full w-full object-cover object-right lg:block"
+      />
+
+      {/* Reforça a legibilidade do texto sobre a parte clara da foto. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-y-0 left-0 hidden w-2/3 bg-gradient-to-r from-brand-surface via-brand-surface/70 to-transparent lg:block"
+      />
+
+      {/* No mobile a foto vai acima do texto, sangrando na largura toda. */}
       <div className="relative h-[300px] w-full sm:h-[380px] lg:hidden">
         <img
           src="/home/hero.webp"
           alt="Caixa de papelão, bobina de papel kraft e chapa ondulada FonPack"
+          fetchPriority="high"
           className="h-full w-full object-cover"
         />
       </div>
 
-      {/* Foto no desktop: sangra a partir da metade direita, atrás do texto. */}
-      <div aria-hidden="true" className="absolute inset-y-0 right-0 hidden w-[58%] lg:block">
-        <img src="/home/hero.webp" alt="" className="h-full w-full object-cover" />
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-brand-surface to-transparent" />
-      </div>
-
-      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-center px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-20">
+      <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-col justify-center px-4 py-10 sm:px-6 sm:py-14 lg:min-h-[calc(100vh-4rem)] lg:px-8 lg:py-20">
         <h1 className="max-w-md font-serif text-4xl leading-tight text-brand-primary sm:text-5xl">
           Protegendo o que é
           <br />

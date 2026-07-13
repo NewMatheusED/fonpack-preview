@@ -25,7 +25,7 @@ export default function OndaCarousel({ ondas }: OndaCarouselProps) {
         type="button"
         onClick={() => scrollByCard(-1)}
         aria-label="Onda anterior"
-        className="absolute left-1 top-1/2 z-10 hidden -translate-y-1/2 items-center justify-center rounded-full bg-brand-surface p-2 text-brand-primary shadow-md transition-transform hover:scale-110 sm:flex lg:-left-4"
+        className="absolute left-2 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-brand-surface text-brand-primary shadow-md transition-transform hover:scale-110 sm:flex"
       >
         <ChevronLeft className="h-5 w-5" />
       </button>
@@ -38,7 +38,7 @@ export default function OndaCarousel({ ondas }: OndaCarouselProps) {
           <article
             key={onda.nome}
             data-onda-card
-            className="flex w-[260px] shrink-0 snap-start flex-col rounded-3xl bg-brand-surface-2 p-6 sm:w-[280px]"
+            className="flex w-[260px] shrink-0 snap-start flex-col rounded-3xl bg-brand-surface p-6 sm:w-[280px]"
           >
             <div className="flex items-start justify-between gap-2">
               <h3 className="font-serif text-2xl text-brand">{onda.nome}</h3>
@@ -85,7 +85,7 @@ export default function OndaCarousel({ ondas }: OndaCarouselProps) {
         type="button"
         onClick={() => scrollByCard(1)}
         aria-label="Próxima onda"
-        className="absolute right-1 top-1/2 z-10 hidden -translate-y-1/2 items-center justify-center rounded-full bg-brand-surface p-2 text-brand-primary shadow-md transition-transform hover:scale-110 sm:flex lg:-right-4"
+        className="absolute right-2 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-brand-surface text-brand-primary shadow-md transition-transform hover:scale-110 sm:flex"
       >
         <ChevronRight className="h-5 w-5" />
       </button>

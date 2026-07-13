@@ -62,16 +62,11 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* No mobile não existe terceira coluna: a marca fica atrás do conteúdo,
-            à direita, grande mas discreta. O botão flutuante do WhatsApp é fixo
-            no canto inferior direito da viewport e pousa por cima — em opacidade
-            baixa isso lê como textura, não como sobreposição quebrada. */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute bottom-0 right-0 select-none font-script text-[9rem] leading-[0.75] text-brand-primary/15 md:hidden"
-        >
-          F
-        </span>
+        {/* No mobile a marca d'água não entra. O footer é uma coluna estreita e o
+            botão flutuante do WhatsApp é `fixed` no canto inferior direito da
+            viewport — bem onde o glifo teria que ficar. Em qualquer tamanho ele
+            acabava cortado pela borda, com o botão pousado por cima. Um ornamento
+            sempre meio encoberto não é ornamento, é sujeira. */}
       </div>
     </footer>
   )

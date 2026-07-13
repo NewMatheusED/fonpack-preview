@@ -56,7 +56,7 @@ export default function Footer() {
               era uma div vazia e o "F" ficava espremido fora dela, deixando um
               vão enorme à direita. */}
           <div aria-hidden="true" className="relative hidden md:block">
-            <span className="pointer-events-none absolute -top-6 right-0 select-none font-script text-[15rem] leading-[0.75] text-brand-primary/25 lg:text-[17rem]">
+            <span className="pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 select-none font-script text-[15rem] leading-[0.75] text-brand-primary/25 lg:text-[17rem]">
               F
             </span>
           </div>

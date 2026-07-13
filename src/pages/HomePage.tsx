@@ -62,7 +62,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-5 sm:mt-14 lg:grid-cols-2 lg:grid-rows-2 lg:gap-6">
+          <div className="mx-auto mt-10 grid grid-cols-1 gap-5 sm:mt-14 lg:grid-cols-2 lg:grid-rows-2 lg:gap-6">
             <GuiaCard guia={guiaMedidas} className="lg:row-span-2" preencherAltura />
             <GuiaCard guia={guiaOnda} />
             <GuiaCard guia={guiaMateriais} />

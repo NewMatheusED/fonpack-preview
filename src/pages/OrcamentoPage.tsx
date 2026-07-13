@@ -11,7 +11,7 @@ export default function OrcamentoPage() {
   const vazio = itens.length === 0
 
   return (
-    <div className="bg-brand-surface-2">
+    <div className="bg-brand-base">
       <Seo
         titulo="Seu Orçamento | FonPack Embalagens"
         descricao="Revise seu pedido e solicite seu orçamento sem compromisso com a FonPack Embalagens."

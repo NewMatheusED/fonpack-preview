@@ -10,7 +10,7 @@ export default function ConfiraMais({ slugAtual }: ConfiraMaisProps) {
   const outros = getOutrosGuias(slugAtual)
 
   return (
-    <section className="border-t border-brand-accent/30 bg-brand-surface-2 py-16 lg:py-20">
+    <section className="border-t border-brand-accent/30 bg-brand-base py-16 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-center font-sans text-2xl font-semibold text-brand sm:text-3xl">
           Confira mais

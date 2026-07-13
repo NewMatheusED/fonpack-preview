@@ -50,7 +50,7 @@ export default function ProdutoPage() {
           <PrevNextNav slug={produto.slug} />
         </div>
 
-        <div className="mt-6 rounded-3xl bg-brand-surface-2 p-6 sm:p-10">
+        <div className="mt-6 rounded-3xl bg-brand-surface p-6 sm:p-10">
           <div className="grid grid-cols-1 gap-x-10 gap-y-8 lg:grid-cols-2">
             <div className="order-1 lg:order-none lg:col-start-1 lg:row-start-1">
               <ProductGallery imagens={produto.imagens} nome={produto.nome} />

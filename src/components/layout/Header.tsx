@@ -80,7 +80,7 @@ export default function Header() {
                     <SheetClose
                       key={link.to}
                       render={<Link to={link.to} />}
-                      className="rounded-md px-3 py-2 text-sm font-medium text-brand transition-colors hover:bg-brand-surface-2 hover:text-brand-primary"
+                      className="rounded-md px-3 py-2 text-sm font-medium text-brand transition-colors hover:bg-brand-base hover:text-brand-primary"
                     >
                       {link.label}
                     </SheetClose>

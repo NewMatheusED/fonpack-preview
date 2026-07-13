@@ -1,18 +1,46 @@
-/* tokens da marca — preenchido na Task 3 */
-/* fontes self-hosted (@fontsource/*) são importadas em src/main.tsx via JS import,
-   não via @import CSS aqui — evita bug de resolução de asset (url() de .woff2)
-   em @import CSS aninhado no pipeline do Vite/Rolldown. */
+/* Tokens da marca FonPack.
+ *
+ * O modelo do Framer não tem paleta: ele mistura #ffffff, #f5f1e6, #f5efdd e
+ * #ebe1d1 — tons quase iguais escolhidos no olho, seção a seção. Aqui a
+ * decisão é outra: três superfícies com papel definido, e nada fora disso.
+ *
+ * SUPERFÍCIES (do fundo para a frente):
+ *
+ *   base       #ffffff  Canvas. Fundo das páginas. Também é o "branco" de chips
+ *                       e de texto sobre o verde.
+ *   surface    #f5f1e6  Creme. Tudo que se levanta do canvas: header, footer,
+ *                       cards de produto, painéis.
+ *   surface-2  #fbf8ef  Creme claro. Só para o que se levanta de DENTRO de um
+ *                       painel creme (as linhas de opção na página de produto,
+ *                       por exemplo). Nunca como fundo de página.
+ *
+ * A regra que faz o layout respirar: card creme sobre canvas branco. Card creme
+ * sobre seção creme some — era exatamente o que estava acontecendo.
+ *
+ * Fontes self-hosted (@fontsource/*) são importadas em src/main.tsx via JS,
+ * não por @import aqui — evita bug de resolução de url(.woff2) no Vite/Rolldown.
+ */
 
 @theme {
+  /* texto */
   --color-brand: #2b2b2b; /* DEFAULT → text-brand */
+  --color-brand-muted: #858585;
+
+  /* superfícies */
+  --color-brand-base: #ffffff;
+  /* O creme é #f5efdd e não #f5f1e6 por um motivo prático: é a cor que o Framer
+     deixou QUEIMADA dentro dos PNGs dos cards de guia (o fundo atrás da bobina
+     de bolha, da divisória e do kraft). Com dois cremes de 2 pontos de diferença
+     aparecia uma emenda entre o card e a imagem. Um creme só, e a emenda some. */
+  --color-brand-surface: #f5efdd;
+  --color-brand-surface-2: #fbf8ef;
+
+  /* marca */
   --color-brand-primary: #3c5e3d;
   --color-brand-primary-2: #567644;
   --color-brand-green-soft: #bdd8b7;
-  --color-brand-surface: #f5f1e6;
-  --color-brand-surface-2: #fcfbf5;
   --color-brand-accent: #dac195;
   --color-brand-accent-2: #a57547;
-  --color-brand-muted: #858585;
 
   --font-serif: 'Amiri', Georgia, serif;
   --font-sans: 'Alata', system-ui, sans-serif;

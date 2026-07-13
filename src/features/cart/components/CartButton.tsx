@@ -9,7 +9,7 @@ export default function CartButton() {
     <Link
       to="/orcamento"
       aria-label="Ver orçamento"
-      className="relative inline-flex h-11 w-11 items-center justify-center rounded-full text-brand-primary transition-colors hover:bg-brand-surface-2"
+      className="relative inline-flex h-11 w-11 items-center justify-center rounded-full text-brand-primary transition-colors hover:bg-brand-base"
     >
       <ShoppingBag className="h-5 w-5" />
       {totalItens > 0 && (

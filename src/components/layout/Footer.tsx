@@ -32,7 +32,7 @@ export default function Footer() {
               href={whatsappHref}
               target="_blank"
               rel="noreferrer"
-              className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand-surface-2 px-5 py-3 text-sm font-bold text-brand-primary shadow-sm transition-transform hover:scale-105"
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-brand-base px-5 py-3 text-sm font-bold text-brand-primary shadow-sm transition-transform hover:scale-105"
             >
               <WhatsAppGlyph className="h-5 w-5 shrink-0" />
               WhatsApp

@@ -20,7 +20,7 @@ export default function InstitutionalSplit() {
           </p>
           <Link
             to="/sobre-nos"
-            className="mt-8 inline-flex w-fit items-center rounded-full bg-brand-surface px-6 py-3 text-sm font-semibold text-brand-primary transition-colors hover:bg-brand-surface-2"
+            className="mt-8 inline-flex w-fit items-center rounded-full bg-brand-surface px-6 py-3 text-sm font-semibold text-brand-primary transition-colors hover:bg-brand-base"
           >
             Nos conheça
           </Link>

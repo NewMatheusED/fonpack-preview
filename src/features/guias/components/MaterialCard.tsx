@@ -8,7 +8,7 @@ type MaterialCardProps = {
 /** Card de material: topo verde com bullets, foto embaixo com os "✔ benefícios". */
 export default function MaterialCard({ material }: MaterialCardProps) {
   return (
-    <div className="flex flex-col overflow-hidden rounded-3xl bg-brand-surface-2">
+    <div className="flex flex-col overflow-hidden rounded-3xl bg-brand-surface">
       <div className="bg-brand-primary px-6 py-6">
         <h2 className="font-serif text-2xl text-brand-surface underline decoration-brand-surface/50 underline-offset-4">
           {material.titulo}

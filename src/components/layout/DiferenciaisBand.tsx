@@ -43,7 +43,7 @@ export default function DiferenciaisBand({
   const isVerde = variant === 'verde'
 
   return (
-    <section className={cn('py-10', isVerde ? 'bg-brand-primary text-brand-surface-2' : 'bg-brand-surface-2 text-brand-primary')}>
+    <section className={cn('py-10', isVerde ? 'bg-brand-primary text-brand-base' : 'bg-brand-base text-brand-primary')}>
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
         {items.map((item) => {
           const Icon = item.icon

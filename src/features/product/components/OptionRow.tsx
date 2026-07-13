@@ -26,7 +26,7 @@ export default function OptionRow({ opcao, selecionada, onSelecionar }: OptionRo
         'flex w-full items-center justify-between gap-4 rounded-2xl px-5 py-4 text-left transition-colors',
         selecionada
           ? 'bg-brand-green-soft ring-2 ring-brand-primary'
-          : 'bg-brand-surface hover:bg-brand-accent/10',
+          : 'bg-brand-surface-2 hover:bg-brand-accent/10',
       )}
     >
       <span>

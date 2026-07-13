@@ -51,7 +51,7 @@ export default function HomePage() {
 
       <InstitutionalSplit />
 
-      <section className="bg-brand-surface py-16 lg:py-24">
+      <section className="bg-brand-base py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="font-serif text-3xl text-brand-primary sm:text-4xl">

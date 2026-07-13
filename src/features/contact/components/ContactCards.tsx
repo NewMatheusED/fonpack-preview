@@ -42,7 +42,7 @@ export default function ContactCards() {
         return (
           <div
             key={card.label}
-            className="flex flex-col items-center overflow-hidden rounded-2xl bg-brand-surface-2 p-8 text-center"
+            className="flex flex-col items-center overflow-hidden rounded-2xl bg-brand-surface p-8 text-center"
           >
             <span
               className={cn(

@@ -64,8 +64,8 @@ export default function VariationStepper({ produto }: VariationStepperProps) {
                       concluido
                         ? 'border-brand-primary bg-brand-primary'
                         : ativo
-                          ? 'border-brand-primary bg-brand-surface-2'
-                          : 'border-brand-accent/50 bg-brand-surface-2',
+                          ? 'border-brand-primary bg-brand-base'
+                          : 'border-brand-accent/50 bg-brand-base',
                     )}
                   />
                   {i < stepperLabels.length - 1 && <span className="h-px flex-1 bg-brand-accent/40" />}

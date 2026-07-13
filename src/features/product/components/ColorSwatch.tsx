@@ -22,7 +22,7 @@ export default function ColorSwatch({ opcoes, value, onChange }: ColorSwatchProp
           className={cn(
             'h-9 w-9 rounded-full border-2 transition-shadow',
             value === opcao.label
-              ? 'border-brand-primary ring-2 ring-brand-primary/30 ring-offset-2 ring-offset-brand-surface-2'
+              ? 'border-brand-primary ring-2 ring-brand-primary/30 ring-offset-2 ring-offset-brand-surface'
               : 'border-brand-accent/40',
           )}
           style={{ backgroundColor: opcao.cor }}

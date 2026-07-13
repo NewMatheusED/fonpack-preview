@@ -45,7 +45,7 @@ export default function MissionVisionValues() {
               'rounded-2xl p-8',
               card.destaque
                 ? 'bg-brand-primary text-brand-surface'
-                : 'bg-brand-surface-2 text-brand-primary',
+                : 'bg-brand-surface text-brand-primary',
             )}
           >
             <h3 className="font-serif text-2xl">{card.titulo}</h3>

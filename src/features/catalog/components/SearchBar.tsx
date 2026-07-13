@@ -16,7 +16,7 @@ export default function SearchBar({ value, onChange }: SearchBarProps) {
         aria-label="Buscar produtos"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="h-10 rounded-full border-brand-accent/40 bg-brand-surface-2 pl-9 text-brand focus-visible:ring-brand-primary/30"
+        className="h-10 rounded-full border-brand-accent/40 bg-brand-base pl-9 text-brand focus-visible:ring-brand-primary/30"
       />
     </div>
   )

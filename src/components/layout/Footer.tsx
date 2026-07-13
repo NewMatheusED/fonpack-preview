@@ -55,9 +55,18 @@ export default function Footer() {
           <div aria-hidden="true" className="hidden md:block" />
         </div>
 
+        {/* Marca d'água. Três cuidados aqui:
+            - opacidade baixa: em cor cheia ela competia com o texto e o botão
+              flutuante do WhatsApp (que é fixo no canto inferior direito da
+              viewport) pousava em cima dela;
+            - tamanho que cabe na altura do footer: o glifo da Italianno é mais
+              alto que a própria font-size, e o `overflow-hidden` decepava o topo
+              dele numa linha reta;
+            - `-bottom` pequeno: o corte acontece na base, que lê como sangria
+              intencional, e não no topo, que lê como bug. */}
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute -right-4 -bottom-12 select-none font-script text-[10rem] leading-none text-brand-primary sm:-bottom-16 sm:text-[14rem] lg:text-[16rem]"
+          className="pointer-events-none absolute -bottom-6 right-0 select-none font-script text-[7rem] leading-[0.8] text-brand-primary/10 sm:-bottom-8 sm:text-[10rem] lg:-bottom-10 lg:text-[13rem]"
         >
           F
         </span>

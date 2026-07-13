@@ -1,0 +1,75 @@
+                <p> Loja
+                  <a> Loja
+                <p> Contatos
+                  <a> Contatos
+                <p> Sobre nós
+                  <a> Sobre nós
+              <li> Diferenças visuais: Ondas baixas e menos espaçadas Ultrafina ≈ 2,2mm Onda D Produtos leves Embalagens para brindes Cosméticos e acessórios
+                    <p> Diferenças visuais:
+                    <p> Ondas baixas e menos espaçadas
+                    <p> Ultrafina
+                    <p> ≈ 2,2mm
+                      <p> Onda D
+                        <li> Produtos leves
+                          <p> Produtos leves
+                        <li> Embalagens para brindes
+                          <p> Embalagens para brindes
+                        <li> Cosméticos e acessórios
+                          <p> Cosméticos e acessórios
+              <li> Diferenças visuais: ondulações pequenas e próximas Fina ≈ 3mm Onda B Caixas de e-commerce Alimentos Caixas para uso geral.
+                    <p> ondulações pequenas e próximas
+                    <p> Fina
+                    <p> ≈ 3mm
+                      <p> Onda B
+                        <li> Caixas de e-commerce
+                          <p> Caixas de e-commerce
+                        <li> Alimentos
+                          <p> Alimentos
+                        <li> Caixas para uso geral.
+                          <p> Caixas para uso geral.
+              <li> Diferenças visuais: ondas mais altas e mais espaçadas Média ≈ 3,8mm Onda C Vidros e cerâmicas leves Produtos frágeis Eletrônicos leves
+                    <p> ondas mais altas e mais espaçadas
+                    <p> Média
+                    <p> ≈ 3,8mm
+                      <p> Onda C
+                        <li> Vidros e cerâmicas leves
+                          <p> Vidros e cerâmicas leves
+                        <li> Produtos frágeis
+                          <p> Produtos frágeis
+                        <li> Eletrônicos leves
+                          <p> Eletrônicos leves
+              <li> Diferenças visuais: Duas camadas de onda B empilhadas Reforçada ≈ 3,8mm Onda BB Transporte pesado Empilhamento Produtos industriais
+                    <p> Duas camadas de onda B empilhadas
+                    <p> Reforçada
+                      <p> Onda BB
+                        <li> Transporte pesado
+                          <p> Transporte pesado
+                        <li> Empilhamento
+                          <p> Empilhamento
+                        <li> Produtos industriais
+                          <p> Produtos industriais
+              <li> Diferenças visuais: Duas camadas de onda, uma B e outra C Reforçada ≈ 6mm Onda BC Eletrodomésticos Mudanças Produtos pesados e frágeis.
+                    <p> Duas camadas de onda, uma B e outra C
+                    <p> ≈ 6mm
+                      <p> Onda BC
+                        <li> Eletrodomésticos
+                          <p> Eletrodomésticos
+                        <li> Mudanças
+                          <p> Mudanças
+                        <li> Produtos pesados e frágeis.
+                          <p> Produtos pesados e frágeis.
+            <h1> Qual onda escolher?
+            <p> A espessura do papelão influencia diretamente na resistência da embalagem
+          <p> Confira mais
+                <p> Fale conosco
+                <p> R. Sesefredo Klein Doll, 900 -
+                <p> Cipó, Embu-Guaçu - SP, 06933-080
+                <p> Whatsapp: (11) 94250-8424
+                <p> E-mail: fonpack@hotmail.com
+                <p> Links rápidos
+                <p> Nossa Loja
+                  <a> Nossa Loja
+                  <a> Fale conosco
+          <p> F
+  <a> Create a free website with Framer, the website builder loved by startups, designers and agencies.
+      <p> Create a free website with Framer, the website builder loved by startups, designers and agencies.

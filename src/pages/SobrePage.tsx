@@ -26,7 +26,7 @@ export default function SobrePage() {
           </p>
         </div>
 
-        <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-brand-surface">
+        <div className="relative aspect-4/3 overflow-hidden rounded-3xl bg-brand-surface">
           <div
             aria-hidden="true"
             className="absolute -left-10 -bottom-10 h-56 w-56 rounded-full bg-brand-accent/30 blur-2xl"

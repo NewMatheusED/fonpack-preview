@@ -30,7 +30,7 @@ export default function OrcamentoPage() {
 
         <div className="mt-8">
           {vazio ? (
-            <div className="flex min-h-[180px] w-full items-center justify-center rounded-md border border-brand-accent/40 bg-brand-base px-6 py-12">
+            <div className="flex min-h-45 w-full items-center justify-center rounded-md border border-brand-accent/40 bg-brand-base px-6 py-12">
               <div className="text-center">
                 <p className="font-bold text-brand">Seu orçamento está vazio</p>
                 <p className="mt-1 text-sm text-brand-muted">
@@ -47,8 +47,8 @@ export default function OrcamentoPage() {
           ) : (
             <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
               <div>
-                <div className="rounded-md border border-brand-accent/40 bg-brand-base">
-                  <ul className="divide-y divide-brand-accent/30">
+                <div>
+                  <ul>
                     {itens.map((item) => (
                       <OrcamentoItem key={item.id} item={item} />
                     ))}

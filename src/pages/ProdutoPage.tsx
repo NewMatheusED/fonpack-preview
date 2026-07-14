@@ -39,7 +39,9 @@ export default function ProdutoPage() {
           {categoria && (
             <>
               <ChevronRight className="h-3.5 w-3.5" />
-              <span>{categoria.nome}</span>
+              <Link to={`/loja?categoria=${categoria.id}`} className="hover:text-brand-primary">
+                {categoria.nome}
+              </Link>
             </>
           )}
           <ChevronRight className="h-3.5 w-3.5" />
@@ -51,12 +53,19 @@ export default function ProdutoPage() {
         </div>
 
         <div className="mt-6 rounded-3xl bg-brand-surface p-6 sm:p-10">
-          <div className="grid grid-cols-1 gap-x-10 gap-y-8 lg:grid-cols-2">
-            <div className="order-1 lg:order-none lg:col-start-1 lg:row-start-1">
-              <ProductGallery imagens={produto.imagens} nome={produto.nome} />
+          <div className="grid grid-cols-1 gap-x-10 gap-y-8 lg:grid-cols-2 lg:items-start">
+            <div className="contents lg:col-start-1 lg:flex lg:flex-col lg:gap-8">
+              <div className="order-1">
+                <ProductGallery imagens={produto.imagens} nome={produto.nome} />
+              </div>
+
+              <div className="order-3">
+                <hr className="mb-8 border-brand-accent/30" />
+                <DescriptionList descricao={produto.descricao} />
+              </div>
             </div>
 
-            <div className="order-2 lg:order-none lg:col-start-2 lg:row-start-1 lg:row-span-2">
+            <div className="order-2 lg:order-0 lg:col-start-2">
               <h1 className="font-serif text-3xl text-brand-primary sm:text-4xl">{produto.nome}</h1>
               <p className="mt-2 text-sm text-brand-muted">
                 Vendido e entregue por{' '}
@@ -65,11 +74,6 @@ export default function ProdutoPage() {
               <div className="mt-8">
                 <VariationStepper produto={produto} />
               </div>
-            </div>
-
-            <div className="order-3 lg:order-none lg:col-start-1 lg:row-start-2">
-              <hr className="mb-8 border-brand-accent/30" />
-              <DescriptionList descricao={produto.descricao} />
             </div>
           </div>
         </div>

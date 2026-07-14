@@ -17,23 +17,27 @@ export default function OrcamentoItem({ item }: OrcamentoItemProps) {
   const href = `/catalogo/${item.produtoSlug}`
 
   return (
-    <li className="px-5 py-5 sm:px-6">
+    <li className="px-5 py-5 sm:px-6 border border-brand-accent/30 rounded-2xl mb-4 ">
       <div className="flex items-start gap-4">
         <Link
           to={href}
-          className="h-20 w-20 shrink-0 overflow-hidden rounded-md border border-brand-accent/40 bg-brand-base"
+          className="h-30 w-30 shrink-0 overflow-hidden rounded-2xl bg-brand-base"
         >
           {imagem && (
-            <img src={imagem} alt={item.nome} className="h-full w-full object-contain p-2" />
+            <img src={imagem} alt={item.nome} className="h-full w-full object-contain p-2 rounded-2xl" />
           )}
         </Link>
 
-        <div className="min-w-[10rem] flex-1">
+        <div className="min-w-40 flex-1">
           <Link to={href} className="font-sans text-base font-bold text-brand hover:underline">
             {item.nome}
           </Link>
           {item.variacaoResumo && (
-            <p className="mt-1 text-sm text-brand-muted">{item.variacaoResumo}</p>
+            <div className="mt-1 flex flex-col gap-0.5 text-sm text-brand-muted">
+              {item.variacaoResumo.split(' | ').map((linha) => (
+                <span key={linha}>{linha}</span>
+              ))}
+            </div>
           )}
         </div>
 

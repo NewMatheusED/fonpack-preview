@@ -12,7 +12,7 @@ export default function GuiaMateriaisPage() {
         imagem="/guias/materiais-hero.webp"
       />
 
-      <div className="relative h-[280px] w-full sm:h-[380px] lg:h-[560px]">
+      <div className="relative h-70 w-full sm:h-95 lg:h-140">
         <img
           src="/guias/materiais-hero.webp"
           alt="Mãos manuseando plástico bolha"

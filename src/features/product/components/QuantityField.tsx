@@ -16,7 +16,7 @@ type QuantityFieldProps = {
  * de volta para 1 na primeira tecla, e o cliente não conseguiria digitar. No
  * blur o rascunho é resolvido: vazio vira o mínimo, e o resto é limitado.
  */
-export default function QuantityField({ value, onChange, mostrarLimites = true }: QuantityFieldProps) {
+export default function QuantityField({ value, onChange, mostrarLimites = false }: QuantityFieldProps) {
   const [rascunho, setRascunho] = useState<string | null>(null)
   const exibido = rascunho ?? String(value)
 

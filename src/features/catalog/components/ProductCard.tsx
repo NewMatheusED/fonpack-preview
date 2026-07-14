@@ -27,8 +27,8 @@ export default function ProductCard({ produto }: ProductCardProps) {
         />
       </div>
       <div className="border-t border-brand-accent/25 px-4 py-4">
-        <h3 className="font-serif text-lg leading-tight text-brand-primary">{produto.nome}</h3>
-        <p className="mt-1 text-sm text-brand-muted">{produto.badge}</p>
+        <h3 className="font-serif text-2xl font-bold leading-tight text-brand-primary">{produto.nome}</h3>
+        <p className="mt-1 text-md text-brand-muted">{produto.badge}</p>
       </div>
     </Link>
   )

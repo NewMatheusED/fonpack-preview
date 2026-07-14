@@ -27,52 +27,54 @@ export default function ProdutoPage() {
         descricao={descricaoSeo}
         imagem={produto.imagens[0]}
       />
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-        <nav aria-label="breadcrumb" className="flex flex-wrap items-center gap-1.5 text-sm text-brand-muted">
-          <Link to="/" className="hover:text-brand-primary">
-            Home
-          </Link>
-          <ChevronRight className="h-3.5 w-3.5" />
-          <Link to="/loja" className="hover:text-brand-primary">
-            Loja
-          </Link>
-          {categoria && (
-            <>
-              <ChevronRight className="h-3.5 w-3.5" />
-              <Link to={`/loja?categoria=${categoria.id}`} className="hover:text-brand-primary">
-                {categoria.nome}
-              </Link>
-            </>
-          )}
-          <ChevronRight className="h-3.5 w-3.5" />
-          <span className="text-brand-primary">{produto.nome}</span>
-        </nav>
+      <div className="bg-brand-surface">
+        <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
+          <nav aria-label="breadcrumb" className="flex flex-wrap items-center gap-1.5 text-sm text-brand-muted">
+            <Link to="/" className="hover:text-brand-primary">
+              Home
+            </Link>
+            <ChevronRight className="h-3.5 w-3.5" />
+            <Link to="/loja" className="hover:text-brand-primary">
+              Loja
+            </Link>
+            {categoria && (
+              <>
+                <ChevronRight className="h-3.5 w-3.5" />
+                <Link to={`/loja?categoria=${categoria.id}`} className="hover:text-brand-primary">
+                  {categoria.nome}
+                </Link>
+              </>
+            )}
+            <ChevronRight className="h-3.5 w-3.5" />
+            <span className="text-brand-primary">{produto.nome}</span>
+          </nav>
 
-        <div className="mt-6">
-          <PrevNextNav slug={produto.slug} />
-        </div>
+          <div className="mt-6">
+            <PrevNextNav slug={produto.slug} />
+          </div>
 
-        <div className="mt-6 rounded-3xl bg-brand-surface p-6 sm:p-10">
-          <div className="grid grid-cols-1 gap-x-10 gap-y-8 lg:grid-cols-2 lg:items-start">
-            <div className="contents lg:col-start-1 lg:flex lg:flex-col lg:gap-8">
-              <div className="order-1">
-                <ProductGallery imagens={produto.imagens} nome={produto.nome} />
+          <div className="mt-6 rounded-3xl bg-brand-base p-6 sm:p-10">
+            <div className="grid grid-cols-1 gap-x-10 gap-y-8 lg:grid-cols-2 lg:items-start">
+              <div className="contents lg:col-start-1 lg:flex lg:flex-col lg:gap-8">
+                <div className="order-1">
+                  <ProductGallery imagens={produto.imagens} nome={produto.nome} />
+                </div>
+
+                <div className="order-3">
+                  <hr className="mb-8 border-brand-accent/30" />
+                  <DescriptionList descricao={produto.descricao} />
+                </div>
               </div>
 
-              <div className="order-3">
-                <hr className="mb-8 border-brand-accent/30" />
-                <DescriptionList descricao={produto.descricao} />
-              </div>
-            </div>
-
-            <div className="order-2 lg:order-0 lg:col-start-2">
-              <h1 className="font-serif text-3xl text-brand-primary sm:text-4xl">{produto.nome}</h1>
-              <p className="mt-2 text-sm text-brand-muted">
-                Vendido e entregue por{' '}
-                <span className="font-semibold text-brand-primary">FonPack Embalagens</span>
-              </p>
-              <div className="mt-8">
-                <VariationStepper produto={produto} />
+              <div className="order-2 lg:order-0 lg:col-start-2">
+                <h1 className="font-sans text-2xl font-bold text-brand-primary sm:text-3xl">{produto.nome}</h1>
+                <p className="mt-2 text-sm text-brand-muted">
+                  Vendido e entregue por{' '}
+                  <span className="font-semibold text-brand-primary">FonPack Embalagens</span>
+                </p>
+                <div className="mt-8">
+                  <VariationStepper produto={produto} />
+                </div>
               </div>
             </div>
           </div>

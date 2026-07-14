@@ -16,7 +16,8 @@ export default function GuiaMateriaisPage() {
         <img
           src="/guias/materiais-hero.webp"
           alt="Mãos manuseando plástico bolha"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover object-[center_80%]"
+
         />
       </div>
 
@@ -31,7 +32,7 @@ export default function GuiaMateriaisPage() {
           </p>
         </div>
 
-        <div className="mx-auto mt-12 grid max-w-7xl grid-cols-1 gap-6 px-4 sm:grid-cols-3 sm:px-6 lg:px-8">
+        <div className="mx-auto mt-12 grid max-w-7xl grid-cols-1 gap-4 px-4 sm:grid-cols-3 sm:px-6 lg:px-8">
           {materiais.map((material) => (
             <MaterialCard key={material.titulo} material={material} />
           ))}

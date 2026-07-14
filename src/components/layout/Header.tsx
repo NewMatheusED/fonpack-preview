@@ -39,10 +39,7 @@ export default function Header() {
           aria-label="FonPack Embalagens — início"
           className="absolute left-1/2 flex min-h-11 -translate-x-1/2 flex-col items-center justify-center text-center leading-none"
         >
-          <span className="font-sans text-xl text-brand-primary">FonPack</span>
-          <span className="mt-1 text-[9px] uppercase tracking-[0.25em] text-brand-primary">
-            Embalagens
-          </span>
+          <img src="/marca/wordmark.webp" alt="FonPack" className="h-11 w-auto" />
         </Link>
 
         <div className="flex items-center justify-end gap-1">

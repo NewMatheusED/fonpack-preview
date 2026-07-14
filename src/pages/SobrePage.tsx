@@ -41,7 +41,7 @@ export default function SobrePage() {
 
       <PillarsBand />
 
-      <section className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
+      <section className="mx-auto grid items-center max-w-7xl grid-cols-1 gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <h2 className="font-serif text-3xl leading-tight text-brand-primary sm:text-4xl">
           Qualidade que acompanha cada envio com segurança e confiança.
         </h2>

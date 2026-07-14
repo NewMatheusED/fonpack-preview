@@ -22,6 +22,11 @@
  */
 
 @theme {
+  /* largura máxima do conteúdo (usada por max-w-7xl em toda a base). Full HD
+     (1920px) em vez do padrão do Tailwind (80rem/1280px) — em monitores
+     grandes o site parava de esticar bem antes de ocupar a tela. */
+  --container-7xl: 120rem;
+
   /* texto */
   --color-brand: #2b2b2b; /* DEFAULT → text-brand */
   --color-brand-muted: #858585;

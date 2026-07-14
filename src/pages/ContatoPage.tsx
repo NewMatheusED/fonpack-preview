@@ -10,7 +10,7 @@ export default function ContatoPage() {
         descricao="Entre em contato com a FonPack Embalagens pelo WhatsApp, e-mail ou telefone e peça seu orçamento personalizado, sem compromisso."
       />
       <section className="relative h-56 overflow-hidden bg-brand-primary sm:h-72 lg:h-80">
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-primary via-brand-primary-2 to-brand-accent-2" />
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-primary via-brand-primary-2" />
         <Package
           aria-hidden="true"
           className="absolute -bottom-10 -right-6 h-56 w-56 text-brand-surface/10 sm:h-72 sm:w-72"

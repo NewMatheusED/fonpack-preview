@@ -18,7 +18,7 @@ type CategoryTabsProps = {
  *   texto verde da marca isso fica errado — daí o override para `brand-primary`.
  */
 const ABA =
-  'shrink-0 px-1 py-1.5 text-sm font-medium text-brand data-active:text-brand-primary data-active:after:bg-brand-primary'
+  'shrink-0 cursor-pointer px-1 py-1.5 text-sm font-medium text-brand transition-colors hover:text-brand-primary data-active:text-brand-primary data-active:after:bg-brand-primary'
 
 export default function CategoryTabs({ value, onValueChange }: CategoryTabsProps) {
   return (

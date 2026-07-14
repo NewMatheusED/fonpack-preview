@@ -51,7 +51,7 @@ export default function DiferenciaisBand({
             <div key={item.titulo} className="flex items-start gap-4">
               <Icon className="h-9 w-9 shrink-0" strokeWidth={1.25} />
               <div>
-                <h3 className="font-sans text-sm font-semibold">{item.titulo}</h3>
+                <h3 className="font-sans text-md font-semibold">{item.titulo}</h3>
                 <p className={cn('mt-1 text-sm', isVerde ? 'text-brand-green-soft' : 'text-brand-primary/70')}>
                   {item.texto}
                 </p>

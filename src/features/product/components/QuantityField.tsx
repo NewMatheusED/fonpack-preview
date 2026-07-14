@@ -5,6 +5,7 @@ import { QTD_MAX, QTD_MIN, lerQtdDigitada, limitarQtd } from '../quantidade'
 type QuantityFieldProps = {
   value: number
   onChange: (n: number) => void
+  mostrarLimites?: boolean
 }
 
 /**
@@ -15,7 +16,7 @@ type QuantityFieldProps = {
  * de volta para 1 na primeira tecla, e o cliente não conseguiria digitar. No
  * blur o rascunho é resolvido: vazio vira o mínimo, e o resto é limitado.
  */
-export default function QuantityField({ value, onChange }: QuantityFieldProps) {
+export default function QuantityField({ value, onChange, mostrarLimites = true }: QuantityFieldProps) {
   const [rascunho, setRascunho] = useState<string | null>(null)
   const exibido = rascunho ?? String(value)
 
@@ -67,9 +68,11 @@ export default function QuantityField({ value, onChange }: QuantityFieldProps) {
         <Plus className="h-4 w-4" />
       </button>
 
-      <span className="text-xs text-brand-muted">
-        mín. {QTD_MIN} · máx. {QTD_MAX.toLocaleString('pt-BR')}
-      </span>
+      {mostrarLimites && (
+        <span className="text-xs text-brand-muted">
+          mín. {QTD_MIN} · máx. {QTD_MAX.toLocaleString('pt-BR')}
+        </span>
+      )}
     </div>
   )
 }

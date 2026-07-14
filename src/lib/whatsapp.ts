@@ -3,8 +3,8 @@ import { company } from './company'
 
 const base = `https://wa.me/${company.whatsapp}?text=`
 
-const ABERTURA = 'Olá! Gostaria de um orçamento:'
-const ASSINATURA = 'Enviado pela vitrine FonPack.'
+const ABERTURA = 'Olá! Gostaria de um orçamento para os seguintes itens:'
+const ASSINATURA = ''
 
 /**
  * Uma linha de item da mensagem. O resumo e a quantidade ficam numa linha

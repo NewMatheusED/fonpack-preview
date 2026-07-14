@@ -9,6 +9,7 @@ export default function OrcamentoPage() {
   const itens = useCart((s) => s.itens)
   const clear = useCart((s) => s.clear)
   const vazio = itens.length === 0
+  const qtdLinhas = itens.length
 
   return (
     <div className="bg-brand-base">
@@ -29,7 +30,7 @@ export default function OrcamentoPage() {
 
         <div className="mt-8">
           {vazio ? (
-            <div className="flex min-h-[180px] w-full items-center justify-center rounded-md bg-brand-surface px-6 py-12">
+            <div className="flex min-h-[180px] w-full items-center justify-center rounded-md border border-brand-accent/40 bg-brand-base px-6 py-12">
               <div className="text-center">
                 <p className="font-bold text-brand">Seu orçamento está vazio</p>
                 <p className="mt-1 text-sm text-brand-muted">
@@ -44,39 +45,61 @@ export default function OrcamentoPage() {
               </div>
             </div>
           ) : (
-            <div className="flex flex-col gap-8">
-              <ul className="flex flex-col gap-4">
-                {itens.map((item) => (
-                  <OrcamentoItem key={item.id} item={item} />
-                ))}
-              </ul>
+            <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
+              <div>
+                <div className="rounded-md border border-brand-accent/40 bg-brand-base">
+                  <ul className="divide-y divide-brand-accent/30">
+                    {itens.map((item) => (
+                      <OrcamentoItem key={item.id} item={item} />
+                    ))}
+                  </ul>
+                </div>
 
-              <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center">
+                <div className="mt-4 flex items-center justify-between gap-4">
+                  <Link
+                    to="/loja"
+                    className="text-sm font-medium text-brand-primary underline underline-offset-4"
+                  >
+                    Continuar comprando
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={clear}
+                    className="text-sm text-brand-muted underline underline-offset-4 transition-colors hover:text-brand-primary"
+                  >
+                    Limpar orçamento
+                  </button>
+                </div>
+              </div>
+
+              <aside className="h-fit rounded-md border border-brand-accent/40 bg-brand-base p-6 lg:sticky lg:top-24">
+                <h2 className="font-sans text-lg font-bold text-brand">Resumo do orçamento</h2>
+
+                <dl className="mt-4 space-y-2 text-sm">
+                  <div className="flex items-center justify-between">
+                    <dt className="text-brand-muted">Itens</dt>
+                    <dd className="font-medium text-brand">
+                      {qtdLinhas} {qtdLinhas === 1 ? 'item' : 'itens'}
+                    </dd>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <dt className="text-brand-muted">Frete</dt>
+                    <dd className="font-medium text-brand">A combinar</dd>
+                  </div>
+                </dl>
+
+                <div className="mt-6 border-t border-brand-accent/30 pt-6 text-center">
+                  <p className="text-sm text-brand-muted">Como deseja enviar seu orçamento?</p>
                   <a
                     href={buildOrcamentoUrl(itens)}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center justify-center rounded-full bg-brand-primary px-6 py-3.5 text-sm font-semibold text-brand-surface transition-colors hover:bg-brand-primary-2"
+                    className="mt-4 flex w-full items-center justify-center rounded-full bg-brand-primary px-6 py-3.5 text-sm font-semibold text-brand-surface transition-colors hover:bg-brand-primary-2"
                   >
-                    Solicitar orçamento pelo WhatsApp
+                    Enviar pelo WhatsApp
                   </a>
-                  <Link
-                    to="/loja"
-                    className="text-center text-sm font-medium text-brand-primary underline underline-offset-4"
-                  >
-                    Continuar comprando
-                  </Link>
                 </div>
-
-                <button
-                  type="button"
-                  onClick={clear}
-                  className="text-sm text-brand-muted underline underline-offset-4 transition-colors hover:text-brand-primary"
-                >
-                  Limpar orçamento
-                </button>
-              </div>
+              </aside>
             </div>
           )}
         </div>

@@ -24,13 +24,13 @@ const cards: ContactCard[] = [
     icon: Mail,
     label: 'Enviar e-mail',
     href: `mailto:${company.email}`,
-    accent: 'bg-brand-accent-2',
+    accent: 'bg-brand-primary-2',
   },
   {
     icon: Phone,
     label: company.whatsappLabel,
     href: `tel:+${company.whatsapp}`,
-    accent: 'bg-brand-primary-2',
+    accent: 'bg-brand-primary',
   },
 ]
 

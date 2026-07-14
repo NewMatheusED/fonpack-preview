@@ -178,10 +178,16 @@ export default function VariationStepper({ produto }: VariationStepperProps) {
       )}
 
       <div className="mt-8 flex flex-col gap-3">
-        {/* O rótulo do botão NÃO muda ao adicionar. Trocá-lo por "Adicionado ✓"
-            renomeava o controle: quem usa leitor de tela perdia o botão, e o
-            cliente que quisesse adicionar de novo não achava mais o mesmo alvo.
-            A confirmação vive numa região `status` própria, logo abaixo. */}
+        {!selecaoCompleta && (
+          <p className="-mt-1 text-center font-bold text-sm text-brand-muted">
+            {/* Os títulos dos grupos já são imperativos ("Escolha a cor"), então
+                entram na frase como estão — só o primeiro mantém a maiúscula. */}
+            {faltando
+              .map((titulo, i) => (i === 0 ? titulo : titulo.toLowerCase()))
+              .join(' e ')}{' '}
+            para adicionar ao orçamento.
+          </p>
+        )}
         <button
           type="button"
           onClick={handleAdicionar}
@@ -211,17 +217,6 @@ export default function VariationStepper({ produto }: VariationStepperProps) {
           >
             Ver meu orçamento ({totalItens})
           </Link>
-        )}
-
-        {!selecaoCompleta && (
-          <p className="-mt-1 text-center text-xs text-brand-muted">
-            {/* Os títulos dos grupos já são imperativos ("Escolha a cor"), então
-                entram na frase como estão — só o primeiro mantém a maiúscula. */}
-            {faltando
-              .map((titulo, i) => (i === 0 ? titulo : titulo.toLowerCase()))
-              .join(' e ')}{' '}
-            para adicionar ao orçamento.
-          </p>
         )}
         <a
           href={buildItemUrl(produto.nome, resumo)}

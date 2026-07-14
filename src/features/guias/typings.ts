@@ -17,7 +17,7 @@ export type Guia = {
   chamada: string
   /** imagem full-bleed do hero da página do guia. */
   heroImg: string
-  /** imagem exibida no card (canto inferior direito, ou fundo inteiro se tema "foto"). */
+  /** imagem exibida no card (canto inferior direito, ou fundo inteiro se tema "foto"). */  
   cardImg: string
   tema: GuiaTema
 }
@@ -26,15 +26,11 @@ export type Onda = {
   nome: string
   label: string
   espessura: string
-  /** classe Tailwind (ex.: "stroke-onda-d") — nunca hex cru no componente. */
-  corClass: string
   bullets: string[]
   diferencasVisuais: string
   imagem: string
-  amplitude: number
-  frequencia: number
-  /** 2 para ondas duplas (BB/BC), omitido (1) para as demais. */
-  camadas?: number
+  /** foto do corte da onda (linha ondulada colorida), ex.: "/ondas/D.png". */
+  ondaImg: string
 }
 
 export type Material = {

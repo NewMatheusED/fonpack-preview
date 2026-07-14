@@ -3,6 +3,10 @@
 export const QTD_MIN = 1
 export const QTD_MAX = 99999
 
+/** Atalhos de quantidade (+10, +500, +1000) nos cards de opção única — poupa
+ *  quem pede volume grande de clicar "+" uma centena de vezes. */
+export const ATALHOS_QTD = [10, 500, 1000] as const
+
 /** Prende um número dentro dos limites. */
 export function limitarQtd(n: number): number {
   if (!Number.isFinite(n)) return QTD_MIN

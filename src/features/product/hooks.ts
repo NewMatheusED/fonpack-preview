@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import type { VariationGroup } from '@/features/catalog/typings'
+import type { VariationGroup, VariationOption } from '@/features/catalog/typings'
 import { rotuloCurto } from './rotulos'
+import { QTD_MIN, limitarQtd } from './quantidade'
 
 /** Grupo (pelo título) → `value` da opção escolhida. */
 export type VariationSelection = Record<string, string>
@@ -28,9 +29,15 @@ function textoDoValor(grupo: VariationGroup, valor: string): string {
   if (grupo.tipo === 'opcoes') {
     const opcao = grupo.opcoes.find((o) => o.value === valor)
     if (!opcao) return valor
-    return opcao.sublabel ? `${opcao.label} (${opcao.sublabel})` : opcao.label
+    return formatarOpcao(opcao)
   }
   return valor
+}
+
+/** Texto de exibição de uma opção (label + sublabel), usado tanto no resumo de
+ *  um grupo comum quanto na seleção múltipla de produtos com um grupo só. */
+export function formatarOpcao(opcao: VariationOption): string {
+  return opcao.sublabel ? `${opcao.label} (${opcao.sublabel})` : opcao.label
 }
 
 /** Monta o resumo da escolha: "Tamanho: 60mm (PERSONALIZADA) | Cor: Pardo". */
@@ -92,5 +99,61 @@ export function useVariationSelection(variacoes: VariationGroup[]) {
     especificacoes,
     selecaoCompleta,
     faltando,
+  }
+}
+
+/** Grupo `opcoes` → `value` da opção → quantidade escolhida. */
+export type SelecaoMultipla = Record<string, number>
+
+/**
+ * Seleção múltipla usada quando o produto tem só UM grupo de variação (ex.:
+ * só "Tamanho"). Nesse caso dá pra marcar várias opções de uma vez, cada uma
+ * com a própria quantidade — elas viram linhas separadas no orçamento.
+ *
+ * Isso só é seguro quando existe um grupo único: com dois grupos (tamanho +
+ * cor, por exemplo), guardar quantidade por tamanho obrigaria todos os
+ * tamanhos escolhidos a usarem a mesma cor.
+ */
+export function useMultiOptionSelection(grupo: Extract<VariationGroup, { tipo: 'opcoes' }>) {
+  const [selecao, setSelecao] = useState<SelecaoMultipla>({})
+
+  const alternar = (value: string) => {
+    setSelecao((s) => {
+      if (value in s) {
+        const { [value]: _omitida, ...resto } = s
+        return resto
+      }
+      return { ...s, [value]: QTD_MIN }
+    })
+  }
+
+  const remover = (value: string) => {
+    setSelecao((s) => {
+      if (!(value in s)) return s
+      const { [value]: _omitida, ...resto } = s
+      return resto
+    })
+  }
+
+  const setQuantidade = (value: string, n: number) => {
+    setSelecao((s) => (value in s ? { ...s, [value]: limitarQtd(n) } : s))
+  }
+
+  const somarQuantidade = (value: string, delta: number) => {
+    setSelecao((s) => (value in s ? { ...s, [value]: limitarQtd(s[value] + delta) } : s))
+  }
+
+  const itensSelecionados = grupo.opcoes
+    .filter((opcao) => opcao.value in selecao)
+    .map((opcao) => ({ opcao, quantidade: selecao[opcao.value] }))
+
+  return {
+    selecao,
+    alternar,
+    remover,
+    setQuantidade,
+    somarQuantidade,
+    itensSelecionados,
+    temSelecao: itensSelecionados.length > 0,
   }
 }

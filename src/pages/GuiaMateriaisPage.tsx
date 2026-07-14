@@ -3,6 +3,12 @@ import { materiais } from '@/features/guias/data'
 import ConfiraMais from '@/features/guias/components/ConfiraMais'
 import MaterialCard from '@/features/guias/components/MaterialCard'
 
+const image_pos_map = [
+  ["90%"],
+  ["50%"],
+  ["30%"]
+]
+
 export default function GuiaMateriaisPage() {
   return (
     <div>
@@ -33,8 +39,8 @@ export default function GuiaMateriaisPage() {
         </div>
 
         <div className="mx-auto mt-12 grid max-w-7xl grid-cols-1 gap-4 px-4 sm:grid-cols-3 sm:px-6 lg:px-8">
-          {materiais.map((material) => (
-            <MaterialCard key={material.titulo} material={material} />
+          {materiais.map((material, index) => (
+            <MaterialCard key={material.titulo} material={material} image_pos={image_pos_map[index]} />
           ))}
         </div>
       </section>

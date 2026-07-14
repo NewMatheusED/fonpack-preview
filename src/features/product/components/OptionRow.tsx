@@ -25,7 +25,7 @@ export default function OptionRow({ opcao, selecionada, onSelecionar }: OptionRo
       className={cn(
         'flex w-full items-center justify-between gap-4 rounded-2xl px-5 py-4 text-left transition-colors',
         selecionada
-          ? 'bg-brand-green-soft ring-2 ring-brand-primary'
+          ? 'bg-brand-green-soft/35 ring-1 ring-inset ring-brand-primary/50'
           : 'bg-brand-surface-2 hover:bg-brand-accent/10',
       )}
     >

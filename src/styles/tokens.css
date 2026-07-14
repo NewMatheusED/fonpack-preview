@@ -50,11 +50,4 @@
   --font-serif: 'Amiri', Georgia, serif;
   --font-sans: 'Alata', system-ui, sans-serif;
   --font-script: 'Italianno', cursive;
-
-  /* cores decorativas das linhas de onda no guia "Qual onda escolher?" */
-  --color-onda-d: #d6398f;
-  --color-onda-b: #e2412f;
-  --color-onda-c: #2f6fed;
-  --color-onda-bb: #2fae52;
-  --color-onda-bc: #8b3fe0;
 }

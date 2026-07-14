@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import type { Onda } from '../typings'
-import OndaWave from './OndaWave'
 
 type OndaCarouselProps = {
   ondas: Onda[]
@@ -98,12 +97,12 @@ export default function OndaCarousel({ ondas }: OndaCarouselProps) {
             {/* mt-auto vale no mobile (coluna flex); no desktop a faixa `1fr` da
                 descrição já empurra a onda para a base. */}
             <div className="mt-auto flex items-center gap-3">
-              <OndaWave
-                colorClass={onda.corClass}
-                amplitude={onda.amplitude}
-                frequencia={onda.frequencia}
-                camadas={onda.camadas}
-                className="flex-1"
+              <img
+                src={onda.ondaImg}
+                alt=""
+                aria-hidden="true"
+                loading="lazy"
+                className="w-full flex-1 object-contain object-left"
               />
               <span className="shrink-0 text-xs text-brand-muted">{onda.espessura}</span>
             </div>

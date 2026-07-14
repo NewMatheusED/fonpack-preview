@@ -10,8 +10,8 @@ export default function SobrePage() {
         descricao="Conheça a história, a missão, a visão e os valores da FonPack Embalagens, parceira em soluções de embalagem para o crescimento do seu negócio."
         imagem="/produtos/arquivo-morto/0.webp"
       />
-      <section className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 px-4 py-12 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-16">
-        <div>
+      <section className="mx-auto grid max-w-7xl grid-cols-1 items-stretch gap-10 px-4 py-12 lg:py-0 lg:pr-0! sm:px-6 lg:min-h-200 lg:grid-cols-2 lg:gap-16 lg:px-8">
+        <div className="flex flex-col justify-center">
           <p className="text-sm font-semibold uppercase tracking-wide text-brand-muted">
             Quem somos
           </p>
@@ -26,15 +26,11 @@ export default function SobrePage() {
           </p>
         </div>
 
-        <div className="relative aspect-4/3 overflow-hidden rounded-3xl bg-brand-surface">
-          <div
-            aria-hidden="true"
-            className="absolute -left-10 -bottom-10 h-56 w-56 rounded-full bg-brand-accent/30 blur-2xl"
-          />
+        <div className="relative aspect-4/3 overflow-hidden lg:aspect-auto lg:h-full">
           <img
-            src="/produtos/arquivo-morto/0.webp"
+            src="/sobre/institucional.webp"
             alt="Caixa de arquivo morto FonPack"
-            className="absolute inset-0 h-full w-full object-contain p-10"
+            className="absolute inset-0 h-full w-full object-cover"
           />
         </div>
       </section>

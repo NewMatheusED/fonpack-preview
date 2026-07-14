@@ -7,7 +7,7 @@ it.each([
   [1, 1],
   [4200, 4200],
   [9999, 9999],
-  [10000, QTD_MAX],
+  [100000, QTD_MAX],
   [999999999, QTD_MAX],
   [3.7, 3],
   // Valor não-finito é lixo, não é "quantidade infinita": cai no mínimo, que é

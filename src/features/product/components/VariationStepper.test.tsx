@@ -5,6 +5,11 @@ import { useCart } from '@/features/cart/store'
 import type { Produto } from '@/features/catalog/typings'
 import VariationStepper from './VariationStepper'
 
+/**
+ * Produto com um grupo SÓ de variação ("Tamanho"): entra no modo de seleção
+ * múltipla — cada tamanho marcado ganha o próprio escolhedor de quantidade e
+ * vira uma linha separada no orçamento.
+ */
 const produto: Produto = {
   slug: 'cantoneira-de-papelao',
   nome: 'Cantoneira de papelão',
@@ -41,6 +46,33 @@ const gomada: Produto = {
   ],
 }
 
+/** Reproduz a Caixa Corte vinco: vários grupos, então continua no fluxo antigo
+ *  (seleção única por grupo + quantidade única no fim). */
+const corteVinco: Produto = {
+  ...produto,
+  slug: 'corte-vinco',
+  nome: 'Caixa Corte vinco',
+  categoriaId: 'caixa',
+  variacoes: [
+    {
+      tipo: 'opcoes',
+      titulo: 'Escolha a onda que deseja',
+      opcoes: [
+        { label: 'B', value: 'b' },
+        { label: 'C', value: 'c' },
+      ],
+    },
+    {
+      tipo: 'swatch',
+      titulo: 'Escolha a cor',
+      opcoes: [
+        { label: 'Pardo', cor: '#e3b991' },
+        { label: 'Branco', cor: '#eeeeee' },
+      ],
+    },
+  ],
+}
+
 const montar = (p: Produto = produto) =>
   render(
     <MemoryRouter>
@@ -48,41 +80,67 @@ const montar = (p: Produto = produto) =>
     </MemoryRouter>,
   )
 
-const opcoes = () => screen.getAllByRole('radio')
 const botaoAdicionar = () => screen.getByRole('button', { name: /adicionar ao orçamento/i })
-const campoQtd = () => screen.getByLabelText('Quantidade')
 
 beforeEach(() => useCart.getState().clear())
 
-it('escolher uma opção apenas seleciona — não coloca nada no orçamento', () => {
-  montar()
-  fireEvent.click(opcoes()[0])
+// ---------------------------------------------------------------------------
+// Modo de seleção múltipla (produto com um grupo `opcoes` só)
+// ---------------------------------------------------------------------------
 
-  expect(useCart.getState().itens).toHaveLength(0)
-  expect(opcoes()[0]).toHaveAttribute('aria-checked', 'true')
-  expect(opcoes()[1]).toHaveAttribute('aria-checked', 'false')
+const cards = () => screen.getAllByRole('checkbox')
+
+it('produto com um grupo só usa cards de seleção múltipla, não rádio', () => {
+  montar()
+  expect(cards()).toHaveLength(2)
+  expect(screen.queryAllByRole('radio')).toHaveLength(0)
+})
+
+it('dá pra marcar mais de uma opção ao mesmo tempo', () => {
+  montar()
+  fireEvent.click(cards()[0])
+  fireEvent.click(cards()[1])
+
+  expect(cards()[0]).toHaveAttribute('aria-checked', 'true')
+  expect(cards()[1]).toHaveAttribute('aria-checked', 'true')
+})
+
+it('marcar uma opção mostra o escolhedor de quantidade dela, com o mínimo 1', () => {
+  montar()
+  fireEvent.click(cards()[0])
+
+  expect(screen.getByLabelText('Quantidade de B')).toHaveValue('1')
+})
+
+it('os atalhos de quantidade (+10, +500, +1000) somam à quantidade atual', () => {
+  montar()
+  fireEvent.click(cards()[0])
+  fireEvent.click(screen.getByRole('button', { name: '+10' }))
+  fireEvent.click(screen.getByRole('button', { name: '+500' }))
+
+  expect(screen.getByLabelText('Quantidade de B')).toHaveValue('511')
+})
+
+it('o botão de remover desmarca a opção', () => {
+  montar()
+  fireEvent.click(cards()[0])
+  expect(cards()[0]).toHaveAttribute('aria-checked', 'true')
+
+  fireEvent.click(screen.getByRole('button', { name: 'Remover B' }))
+  expect(cards()[0]).toHaveAttribute('aria-checked', 'false')
 })
 
 it('duas opções com o MESMO label não acendem juntas', () => {
   montar(gomada)
+  const opcoes = () => screen.getAllByRole('checkbox')
 
-  // as duas linhas se chamam "60mm"; só o sublabel as separa
   fireEvent.click(opcoes()[0])
 
   expect(opcoes()[0]).toHaveAttribute('aria-checked', 'true')
   expect(opcoes()[1]).toHaveAttribute('aria-checked', 'false')
 })
 
-it('o resumo carrega o sublabel, senão o pedido chega ambíguo no WhatsApp', () => {
-  montar(gomada)
-
-  fireEvent.click(opcoes()[1]) // a "60mm PERSONALIZADA"
-  fireEvent.click(botaoAdicionar())
-
-  expect(useCart.getState().itens[0].variacaoResumo).toBe('Tamanho: 60mm (PERSONALIZADA)')
-})
-
-it('não dá para adicionar ao orçamento sem escolher a variação', () => {
+it('não dá para adicionar ao orçamento sem marcar nenhuma opção', () => {
   montar()
 
   expect(botaoAdicionar()).toBeDisabled()
@@ -90,68 +148,99 @@ it('não dá para adicionar ao orçamento sem escolher a variação', () => {
   expect(useCart.getState().itens).toHaveLength(0)
 })
 
-it('adiciona o item com a quantidade digitada', () => {
+it('adiciona uma linha do orçamento para cada opção marcada, cada uma com a própria quantidade', () => {
   montar()
 
-  fireEvent.click(opcoes()[0])
+  fireEvent.click(cards()[0]) // B
+  fireEvent.click(cards()[1]) // C
+  fireEvent.click(screen.getAllByRole('button', { name: '+10' })[1]) // soma 10 à quantidade de C
+  fireEvent.click(botaoAdicionar())
+
+  const { itens } = useCart.getState()
+  expect(itens).toHaveLength(2)
+  expect(itens.map((i) => i.variacaoResumo)).toEqual(['Onda: B', 'Onda: C'])
+  expect(itens.find((i) => i.variacaoResumo === 'Onda: B')?.quantidade).toBe(1)
+  expect(itens.find((i) => i.variacaoResumo === 'Onda: C')?.quantidade).toBe(11)
+})
+
+it('o resumo carrega o sublabel, senão o pedido chega ambíguo no WhatsApp', () => {
+  montar(gomada)
+  const opcoes = () => screen.getAllByRole('checkbox')
+
+  fireEvent.click(opcoes()[1]) // a "60mm PERSONALIZADA"
+  fireEvent.click(botaoAdicionar())
+
+  expect(useCart.getState().itens[0].variacaoResumo).toBe('Tamanho: 60mm (PERSONALIZADA)')
+})
+
+it('adicionar de novo com a mesma opção marcada SOMA a quantidade', () => {
+  montar()
+
+  fireEvent.click(cards()[0])
+  fireEvent.click(botaoAdicionar())
+  fireEvent.click(botaoAdicionar())
+
+  const { itens } = useCart.getState()
+  expect(itens).toHaveLength(1)
+  expect(itens[0].quantidade).toBe(2)
+})
+
+// ---------------------------------------------------------------------------
+// Fluxo antigo (produto com MAIS de um grupo de variação)
+// ---------------------------------------------------------------------------
+
+const opcoesRadio = () => screen.getAllByRole('radio')
+const campoQtd = () => screen.getByLabelText('Quantidade')
+
+it('produto com vários grupos continua no fluxo de seleção única + quantidade no fim', () => {
+  montar(corteVinco)
+
+  expect(opcoesRadio()).toHaveLength(2)
+  expect(screen.queryAllByRole('checkbox')).toHaveLength(0)
+  expect(campoQtd()).toBeInTheDocument()
+})
+
+it('escolher uma opção apenas seleciona — não coloca nada no orçamento', () => {
+  montar(corteVinco)
+  fireEvent.click(opcoesRadio()[0])
+
+  expect(useCart.getState().itens).toHaveLength(0)
+  expect(opcoesRadio()[0]).toHaveAttribute('aria-checked', 'true')
+  expect(opcoesRadio()[1]).toHaveAttribute('aria-checked', 'false')
+})
+
+it('não dá para adicionar ao orçamento sem escolher todos os grupos', () => {
+  montar(corteVinco)
+
+  expect(botaoAdicionar()).toBeDisabled()
+  fireEvent.click(botaoAdicionar())
+  expect(useCart.getState().itens).toHaveLength(0)
+})
+
+it('adiciona o item com a quantidade digitada', () => {
+  montar(corteVinco)
+
+  fireEvent.click(opcoesRadio()[0])
+  fireEvent.click(screen.getAllByRole('button', { name: /pardo/i })[0])
   fireEvent.change(campoQtd(), { target: { value: '25' } })
   fireEvent.click(botaoAdicionar())
 
   const { itens } = useCart.getState()
   expect(itens).toHaveLength(1)
   expect(itens[0].quantidade).toBe(25)
-  expect(itens[0].variacaoResumo).toBe('Onda: B')
-})
-
-it('quantidade digitada acima do teto trava em 9999', () => {
-  montar()
-
-  fireEvent.click(opcoes()[0])
-  fireEvent.change(campoQtd(), { target: { value: '999999' } })
-  fireEvent.click(botaoAdicionar())
-
-  expect(useCart.getState().itens[0].quantidade).toBe(9999)
-})
-
-it('os botões − e + andam de um em um e respeitam o mínimo', () => {
-  montar()
-  fireEvent.click(opcoes()[0])
-
-  const menos = screen.getByRole('button', { name: /diminuir quantidade/i })
-  const mais = screen.getByRole('button', { name: /aumentar quantidade/i })
-
-  expect(menos).toBeDisabled() // já está em 1
-  fireEvent.click(mais)
-  fireEvent.click(mais)
-  expect(campoQtd()).toHaveValue('3')
-
-  fireEvent.click(menos)
-  expect(campoQtd()).toHaveValue('2')
-})
-
-it('a mesma configuração adicionada duas vezes SOMA a quantidade', () => {
-  montar()
-
-  fireEvent.click(opcoes()[0])
-  fireEvent.change(campoQtd(), { target: { value: '10' } })
-  fireEvent.click(botaoAdicionar())
-  fireEvent.click(botaoAdicionar())
-
-  const { itens } = useCart.getState()
-  expect(itens).toHaveLength(1)
-  expect(itens[0].quantidade).toBe(20)
+  expect(itens[0].variacaoResumo).toBe('Onda: B | Cor: Pardo')
 })
 
 it('configurações diferentes viram LINHAS diferentes do orçamento', () => {
-  montar()
+  montar(corteVinco)
 
-  fireEvent.click(opcoes()[0])
+  fireEvent.click(opcoesRadio()[0])
+  fireEvent.click(screen.getAllByRole('button', { name: /pardo/i })[0])
   fireEvent.click(botaoAdicionar())
 
-  fireEvent.click(opcoes()[1])
+  fireEvent.click(opcoesRadio()[1])
   fireEvent.click(botaoAdicionar())
 
   const { itens } = useCart.getState()
   expect(itens).toHaveLength(2)
-  expect(itens.map((i) => i.variacaoResumo)).toEqual(['Onda: B', 'Onda: C'])
 })

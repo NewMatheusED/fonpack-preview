@@ -12,7 +12,7 @@ export default function ProductGallery({ imagens, nome }: ProductGalleryProps) {
 
   return (
     <div>
-      <div className="flex aspect-square items-center justify-center overflow-hidden rounded-2xl bg-brand-surface p-10">
+      <div className="flex aspect-square items-center justify-center overflow-hidden rounded-4xl">
         {principal && <img src={principal} alt={nome} className="h-full w-full object-contain" />}
       </div>
 

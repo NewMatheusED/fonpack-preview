@@ -96,7 +96,7 @@ export default function OndaCarousel({ ondas }: OndaCarouselProps) {
 
             {/* mt-auto vale no mobile (coluna flex); no desktop a faixa `1fr` da
                 descrição já empurra a onda para a base. */}
-            <div className="mt-auto flex items-center gap-3">
+            <div className="mt-auto flex flex-col items-end gap-3">
               <img
                 src={onda.ondaImg}
                 alt=""

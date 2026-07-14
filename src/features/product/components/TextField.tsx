@@ -12,7 +12,7 @@ export default function TextField({ placeholder, value, onChange }: TextFieldPro
       placeholder={placeholder}
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="h-12 rounded-xl border-brand-accent/40 bg-brand-surface px-4 text-brand"
+      className="h-12 rounded-xl border-brand-accent/40 bg-brand-surface-2 px-4 text-brand"
     />
   )
 }

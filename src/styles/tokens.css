@@ -33,10 +33,6 @@
 
   /* superfícies */
   --color-brand-base: #ffffff;
-  /* O creme é #f5efdd e não #f5f1e6 por um motivo prático: é a cor que o Framer
-     deixou QUEIMADA dentro dos PNGs dos cards de guia (o fundo atrás da bobina
-     de bolha, da divisória e do kraft). Com dois cremes de 2 pontos de diferença
-     aparecia uma emenda entre o card e a imagem. Um creme só, e a emenda some. */
   --color-brand-surface: #f5f1e6;
   --color-brand-surface-2: #fcfbf5;
 

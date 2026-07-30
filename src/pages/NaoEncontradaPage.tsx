@@ -11,6 +11,7 @@ export default function NaoEncontradaPage() {
       <Seo
         titulo="Página não encontrada | FonPack Embalagens"
         descricao="A página que você procurou não existe. Veja nosso catálogo de embalagens."
+        semIndexacao
       />
 
       <section className="mx-auto flex max-w-7xl flex-col items-center px-4 py-24 text-center sm:px-6 lg:px-8 lg:py-32">

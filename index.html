@@ -9,7 +9,37 @@
       name="description"
       content="Caixas, fitas, bobinas e acessórios de embalagem sob medida. Peça seu orçamento pelo WhatsApp com a FonPack Embalagens."
     />
+    <link rel="canonical" href="https://fonpackembalagens.com.br/" />
     <title>FonPack Embalagens | Embalagens sob medida para o seu negócio</title>
+
+    <!--
+      Dados estruturados (Organization/LocalBusiness) ficam aqui, estáticos no
+      HTML, porque este é um app 100% client-side (SPA): tudo que o React
+      injeta via react-helmet-async só existe depois do JS rodar. Robôs que
+      não executam JS (e o Google na primeira passada de rastreio) só veem o
+      que está neste arquivo — por isso o essencial da marca mora aqui.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "FonPack Embalagens",
+        "image": "https://fonpackembalagens.com.br/produtos/corte-vinco/0.webp",
+        "url": "https://fonpackembalagens.com.br/",
+        "telephone": "+5511942508424",
+        "email": "fonpack@hotmail.com",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "R. Sesefredo Klein Doll, 900",
+          "addressLocality": "Embu-Guaçu",
+          "addressRegion": "SP",
+          "postalCode": "06933-080",
+          "addressCountry": "BR"
+        },
+        "description": "Caixas, fitas, bobinas e acessórios de embalagem sob medida. Peça seu orçamento pelo WhatsApp com a FonPack Embalagens."
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

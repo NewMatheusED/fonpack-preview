@@ -15,8 +15,8 @@ export default function HomePage() {
   return (
     <div>
       <Seo
-        titulo="FonPack Embalagens | Embalagens sob medida para o seu negócio"
-        descricao="Caixas, fitas, bobinas e acessórios de embalagem sob medida. Peça seu orçamento pelo WhatsApp com a FonPack Embalagens."
+        titulo="FonPack Embalagens | Indústria de Embalagens sob medida"
+        descricao="FonPack, indústria de embalagens sob medida: caixas, fitas, bobinas e acessórios. Peça seu orçamento pelo WhatsApp."
         imagem="/produtos/corte-vinco/0.webp"
       />
       <Hero />

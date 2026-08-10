@@ -7,7 +7,7 @@ export default function SobrePage() {
     <div>
       <Seo
         titulo="Sobre nós | FonPack Embalagens"
-        descricao="Conheça a história, a missão, a visão e os valores da FonPack Embalagens, parceira em soluções de embalagem para o crescimento do seu negócio."
+        descricao="Conheça a FonPack, indústria de embalagens sob medida: nossa história, missão, visão e valores como parceira do crescimento do seu negócio."
         imagem="/produtos/arquivo-morto/0.webp"
       />
       <section className="mx-auto grid max-w-7xl grid-cols-1 items-stretch gap-10 px-4 py-12 lg:py-0 lg:pr-0! sm:px-6 lg:min-h-200 lg:grid-cols-2 lg:gap-16 lg:px-8">
@@ -19,9 +19,9 @@ export default function SobrePage() {
             Seu parceiro em soluções que acompanham o crescimento do seu negócio.
           </h1>
           <p className="mt-6 max-w-lg text-sm text-brand-muted sm:text-base">
-            A FonPack Embalagens nasceu com o propósito de oferecer soluções completas em
-            embalagens para empresas de diferentes segmentos. Com foco na qualidade,
-            confiabilidade e bom atendimento, fornecemos produtos que garantem mais
+            A FonPack é uma indústria de embalagens que nasceu com o propósito de oferecer
+            soluções completas em embalagens para empresas de diferentes segmentos. Com foco na
+            qualidade, confiabilidade e bom atendimento, fornecemos produtos que garantem mais
             segurança, praticidade e eficiência.
           </p>
         </div>
